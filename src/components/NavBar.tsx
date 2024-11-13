@@ -2,20 +2,16 @@ import Logo from "../assets/favicon.png";
 
 const navItems = [
   {
-    title: `How it works`,
-    link: `#how`,
-  },
-  {
-    title: `Movies`,
-    link: `#movies`,
+    title: `Home`,
+    link: `#home`,
   },
   {
     title: `Features`,
     link: `#features`,
   },
   {
-    title: `FAQ`,
-    link: `#faq`,
+    title: `Pricing`,
+    link: `#pricing`,
   },
 ];
 
@@ -24,7 +20,7 @@ export default function NavBar() {
     <div className="nav-wrapper">
       <nav className="nav container">
         <img src={Logo} alt="Movid App logo" className="logo" />
-        <p className="nav-app">MovieBox</p>
+        <p className="nav-app">cognifyAI</p>
         <ul className="nav-links">
           {navItems.map(item => (
             <li key={item.title}>

@@ -4,8 +4,9 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(7, 0, 0, 0.87);
+  background-color: #ffffff;
+  /*background-color: ;*/
 
   font-synthesis: none;
 }
@@ -87,6 +88,10 @@ button:focus-visible {
   margin: 0 auto;
 }
 
+.container-left {
+  display: flex;
+}
+
 ul {
   list-style: none;
 }
@@ -105,8 +110,8 @@ ul {
 
 .btn--primary:link,
 .btn--primary:visited {
-  background-color: #f9f9f9;
-  color: #1a1a1a;
+  background-color: rgba(7, 0, 0, 0.87);
+  color: #fffefe;
   border: 1px solid transparent;
 }
 
@@ -140,6 +145,14 @@ ul {
   margin-bottom: 32px !important;
 }
 
+.mb--large {
+  margin-bottom: 64px !important;
+}
+
+.mt--large {
+  margin-top: 64px !important;
+}
+
 .text--center {
   text-align: center;
 }
@@ -166,7 +179,7 @@ ul {
 
 /* NAV */
 .nav-wrapper {
-  background-color: #1a1a1a;
+  background-color: #fffefe;
   position: sticky;
   top: 0;
 }
@@ -199,7 +212,7 @@ ul {
 
 .nav-link:link,
 .nav-link:visited {
-  color: #f9f9f9;
+  color: rgba(7, 0, 0, 0.87);
 }
 
 /* HERO */
@@ -260,11 +273,18 @@ ul {
   gap: 48px;
 }
 
+.step-box2 {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+}
+
 .step {
   display: flex;
   align-items: center;
   gap: 24px;
 }
+
 
 .step-number {
   display: flex;
@@ -286,4 +306,226 @@ ul {
 
 .step-description {
   font-size: 18px;
+}
+
+/* COREPROBLEM */
+.section-core {
+  padding: 96px 32px;
+}
+
+.core-title {
+  line-height: 1.1;
+  letter-spacing: -0.25px;
+}
+
+.core-logo {
+  height: 40px;
+  border-radius: 3px;
+}
+
+.core-box {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+}
+
+.core-description {
+  font-size: 15px;
+}
+
+ul.core_items {
+  list-style-type: none;
+}
+
+ul.core_items li
+{
+  float: left;
+  width: 33%;
+  display: inline;
+}
+
+/* ARCHIVE */
+.section-archive {
+  padding: 96px 32px;
+}
+
+ul.archive_items {
+  list-style-type: none;
+}
+
+ul.archive_items li
+{
+  float: left;
+  width: 30%;
+  display: inline;
+}
+
+.archive-title {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.archive-subtitle {
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.archive-logo {
+  height: 40px;
+  border-radius: 3px;
+}
+
+.archive-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 48px;
+}
+
+.archive-description {
+  font-size: 15px;
+}
+
+.name-container {
+  text-align: left;
+  margin-left: 18px;
+}
+
+/* STORY */
+
+
+.section-story {
+  padding: 96px 32px;
+}
+
+.story-title {
+  font-size: 24px;
+  line-height: 1.4;
+}
+
+.story-subtitle {
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.story-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 48px;
+}
+
+ul.story_items {
+  list-style-type: none;
+}
+
+ul.story_items li
+{
+  float: left;
+  width: 30%;
+  display: inline;
+}
+
+.story-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.story-container {
+  padding: 2px 16px;
+}
+
+/* PLAN */
+.section-plan {
+  padding: 96px 32px;
+}
+
+.plan-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 48px;
+}
+
+ul.plan_items {
+  list-style-type: none;
+}
+
+ul.plan_items li
+{
+  float: left;
+  width: 30%;
+  display: inline;
+}
+
+ul.plan_items-description {
+  list-style-type: none;
+}
+
+ul.plan_items-description li
+{
+  float: left;
+  /*width: 30%;*/
+  display: inline;
+}
+
+.plan-box-description {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  gap: 10px;
+}
+
+/* QUESTION */
+.section-question {
+  padding: 96px 32px;
+}
+
+.question-box {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+}
+
+ul.question_items {
+  list-style-type: none;
+}
+
+ul.question_items li
+{
+  float: left;
+  width: 50%;
+  display: inline;
+}
+
+.question-box-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 48px;
+}
+
+.question-title {
+  margin-bottom: 32px;
+  font-size: 42px;
+  line-height: 1.1;
+  letter-spacing: -0.25px;
+}
+
+.question-subtitle {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+/* ENDPAGE */
+.section-endpage {
+  background: #1a1a1a !important;
+  color: white;
+  padding: 96px 32px;
+  border-radius: 30px;
 }

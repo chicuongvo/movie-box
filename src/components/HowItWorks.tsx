@@ -1,29 +1,30 @@
 const mockData = [
   {
     id: 1,
-    title: "Select your films",
-    description:
-      "Explore our extensive library or let Cinemagic AI recommend movies based on your tastes and past views.",
+    title: "Upload Your Knowledge",
+    description: "Easily upload files and URLs to create a centralized repository of information.",
   },
   {
     id: 2,
-    title: "Order with ease",
-    description:
-      "Add movies to your cart, choose your format (DVD, Blu-Ray, 4K), and check out.",
+    title: "Query the Chatbot",
+    description: "Ask the chatbot questions to retrieve precise answers based on the uploaded data.",
   },
   {
     id: 3,
-    title: "Enjoy fast delivery",
-    description:
-      "Your chosen films will be delivered to your doorstep quickly and in perfect condition.",
+    title: "Access Information Quickly",
+    description: "Get the information you need in seconds, reducing the time spent searching for documents.",
+  },
+  {
+    id: 4,
+    title: "Enhance Productivity",
+    description: "Streamline workflows and improve decision-making with easy access to information.",
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="section-how" id="how">
-      <p className="section-subtitle mb--medium">How it works</p>
-      <h2 className="section-title">Three simple steps to movie night</h2>
+    <section className="section-how mb--medium" id="how">
+      <h1 className="hero-title text--center">How it works</h1>
       <ul className="step-box">
         {mockData.map(step => (
           <li key={step.id} className="step">

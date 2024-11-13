@@ -5,17 +5,13 @@ export default function Hero() {
     <section className="grid-2-cols section-hero">
       <div className="hero-text-box">
         <h1 className="hero-title">
-          Your favorite films delivered to your door.
+          Chat with your data seamlessly
         </h1>
         <p className="hero-subtitle">
-          The ultimate film hub for cinema lovers. Access thousands of titles
-          from the comfort of your home.
+          Turn enterprise knowledge (PDFs, URLs, text) into an Al assistant and talk to your data naturally
         </p>
         <a href="#" className="btn btn--primary mr--small">
-          Start watching now
-        </a>
-        <a href="#how" className="btn btn--secondary">
-          Learn more &darr;
+          Get Started
         </a>
       </div>
       <div className="hero-img-box">
