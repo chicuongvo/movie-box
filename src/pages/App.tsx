@@ -1,17 +1,13 @@
 // import { useState } from "react";
 import NavBar from "../components/NavBar";
-import Hero from "../components/Hero";
-import FeaturedIn from "../components/FeaturedIn";
-import HowItWorks from "../components/HowItWorks";
+import HomePage from "./HomePage/HomePage";
 
 function App() {
   return (
     <>
       <NavBar></NavBar>
       <LandingContainer>
-        <Hero></Hero>
-        <FeaturedIn></FeaturedIn>
-        <HowItWorks></HowItWorks>
+        <HomePage></HomePage>
       </LandingContainer>
     </>
   );
