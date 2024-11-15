@@ -1,0 +1,37 @@
+.checkoutPage {
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.formSection {
+  margin-bottom: 20px;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+  max-width: 400px;
+  margin: auto;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.orderSummary {
+  text-align: center;
+}
+
+.paymentButton {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}

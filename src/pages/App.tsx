@@ -9,7 +9,8 @@ import Story from "../components/Story.tsx";
 import Plan from "../components/Plan.tsx";
 import Question from "../components/Question.tsx";
 import EndPage from "../components/EndPage.tsx";
-
+import Cart from "../components/Cart/Cart.tsx";
+import CheckoutPage from "../components/CheckoutPage/CheckoutPage.tsx";
 function App() {
   return (
     <>
@@ -24,6 +25,8 @@ function App() {
         <Plan></Plan>
         <Question></Question>
         <EndPage></EndPage>
+        <Cart />
+        <CheckoutPage />
       </LandingContainer>
     </>
   );
