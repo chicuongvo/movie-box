@@ -55,10 +55,11 @@
       .minutes {
         display: inline-block;
         /* margin-top: 15px; */
-        color: #333;
+        color: #555;
         padding: 5px;
+        font-weight: 500;
         border-radius: 5px;
-        border: 1px solid rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(252, 196, 25, 0.75);
       }
       .type {
         display: inline-block;
@@ -157,6 +158,7 @@
   display: flex;
   align-items: flex-end;
   gap: 16px;
+  margin-top: 16px;
 }
 
 .actors_list {
@@ -191,4 +193,36 @@
   font-size: 36px;
   font-weight: 600;
   color: #555;
+}
+
+.review-avt {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.review-card {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 650px;
+  margin-bottom: 36px;
+  border-radius: 11px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.review-card span {
+  opacity: 50%;
+}
+
+.review-card p {
+  line-height: 1.8;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
 }

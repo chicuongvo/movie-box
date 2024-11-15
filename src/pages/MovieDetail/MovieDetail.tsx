@@ -21,6 +21,7 @@ const CAST_NUM_PER_PAGE = 4;
 
 export default function MovieDetail() {
   const [movie, setMovie] = useState<Movie | null>(null);
+  const [reviews, setReviews] = useState([]);
   const [trailer, setTrailer] = useState("");
   const [casts, setCasts] = useState([]);
 
@@ -35,7 +36,6 @@ export default function MovieDetail() {
           const data = await res.json();
           const { cast } = data.credits;
           setMovie(data);
-          console.log(data);
           setCasts(cast.slice(0, CAST_NUM_PER_PAGE));
         } catch (error) {
           console.error(error);
@@ -63,12 +63,32 @@ export default function MovieDetail() {
     [id]
   );
 
+  useEffect(
+    function () {
+      async function fetchReviews(id: number) {
+        try {
+          const res = await fetch(
+            `${API_URL}/${id}/reviews?api_key=${API_KEY}`
+          );
+          const data = await res.json();
+          const reviews = data.results.slice(0, 4);
+          setReviews(reviews);
+          console.log(reviews);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      fetchReviews(id);
+    },
+    [id]
+  );
   return (
     <div className={styles["movie-detail-wrapper"]}>
       <h1 className={styles.heading}>Movie Details</h1>
       {movie && <MovieCard movie={movie} />}
       <MovieTrailer trailer={trailer} />
       <ActorList actors={casts} />
+      <Reviews reviews={reviews} />
     </div>
   );
 }
@@ -138,7 +158,6 @@ function MovieTrailer({ trailer }) {
 }
 
 function ActorList({ actors }) {
-  console.log(actors);
   return (
     <div>
       <h2 className={styles.section}>Actor cast</h2>
@@ -161,6 +180,47 @@ function ActorCard({ actor }) {
         src={`${IMG_URL}${actor.profile_path}`}
       />
       <p className={styles.actor_name}>{actor.name}</p>
+    </div>
+  );
+}
+
+function Reviews({ reviews }) {
+  return (
+    <div>
+      <h2 className={styles.section}>Review</h2>
+      {reviews.map((review, i) => (
+        <ReviewCard key={review.id} review={review} id={i}></ReviewCard>
+      ))}
+    </div>
+  );
+}
+
+function formatDate(isoDate) {
+  const date = new Date(isoDate);
+
+  // Format the date as DD/MM/YYYY
+  const day = String(date.getUTCDate()).padStart(2, "0");
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Months are 0-based
+  const year = date.getUTCFullYear();
+
+  const formattedDate = `${day}/${month}/${year}`;
+  return formattedDate;
+}
+
+function ReviewCard({ review, id }) {
+  return (
+    <div className={styles["review-card"]}>
+      <img
+        className={styles["review-avt"]}
+        src={`https://loremflickr.com/200/200?random=${id}`}
+      />
+      <div>
+        <div className={styles["review-header"]}>
+          <h3>{review.author}</h3>
+          <span>{formatDate(review.created_at)}</span>
+        </div>
+        <p>{review.content.slice(0, 150)}</p>
+      </div>
     </div>
   );
 }
