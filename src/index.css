@@ -46,16 +46,14 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  padding: 0.8em 1.6em;
+  text-transform: uppercase;
+  font-size: 1.2em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #e03131;
   cursor: pointer;
   transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
 }
 button:focus,
 button:focus-visible {
@@ -285,7 +283,6 @@ ul {
   gap: 24px;
 }
 
-
 .step-number {
   display: flex;
   justify-content: center;
@@ -337,8 +334,7 @@ ul.core_items {
   list-style-type: none;
 }
 
-ul.core_items li
-{
+ul.core_items li {
   float: left;
   width: 33%;
   display: inline;
@@ -353,8 +349,7 @@ ul.archive_items {
   list-style-type: none;
 }
 
-ul.archive_items li
-{
+ul.archive_items li {
   float: left;
   width: 30%;
   display: inline;
@@ -394,7 +389,6 @@ ul.archive_items li
 
 /* STORY */
 
-
 .section-story {
   padding: 96px 32px;
 }
@@ -421,15 +415,14 @@ ul.story_items {
   list-style-type: none;
 }
 
-ul.story_items li
-{
+ul.story_items li {
   float: left;
   width: 30%;
   display: inline;
 }
 
 .story-card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 5px;
 }
@@ -454,8 +447,7 @@ ul.plan_items {
   list-style-type: none;
 }
 
-ul.plan_items li
-{
+ul.plan_items li {
   float: left;
   width: 30%;
   display: inline;
@@ -465,8 +457,7 @@ ul.plan_items-description {
   list-style-type: none;
 }
 
-ul.plan_items-description li
-{
+ul.plan_items-description li {
   float: left;
   /*width: 30%;*/
   display: inline;
@@ -495,8 +486,7 @@ ul.question_items {
   list-style-type: none;
 }
 
-ul.question_items li
-{
+ul.question_items li {
   float: left;
   width: 50%;
   display: inline;
