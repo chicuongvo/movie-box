@@ -1,3 +1,8 @@
+:root {
+  --color--primary: #e03131;
+  --color--shade: #c92a2a;
+}
+
 .heading {
   text-align: center;
   text-transform: uppercase;
@@ -15,8 +20,8 @@
   position: relative;
   display: block;
   width: 1200px;
-  height: 450px;
-  margin: 80px auto;
+  height: fit-content;
+  margin: 40px auto;
   overflow: hidden;
   border-radius: 10px;
   transition: all 0.4s;
@@ -28,8 +33,9 @@
   }
   .info_section {
     position: relative;
+    padding-bottom: 36px;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     background-blend-mode: multiply;
     z-index: 2;
     border-radius: 10px;
@@ -37,6 +43,7 @@
       position: relative;
       padding: 25px;
       height: 40%;
+      /* margin-bottom: 24px; */
       h1 {
         color: black;
         font-weight: 400;
@@ -47,8 +54,8 @@
       }
       .minutes {
         display: inline-block;
-        margin-top: 15px;
-        color: #555;
+        /* margin-top: 15px; */
+        color: #333;
         padding: 5px;
         border-radius: 5px;
         border: 1px solid rgba(0, 0, 0, 0.05);
@@ -68,33 +75,35 @@
     }
     .movie_desc {
       padding: 0 25px;
+      margin-bottom: 24px;
       height: 50%;
       .text {
         color: #545454;
         font-size: 20px;
+        line-height: 1.8;
       }
     }
     .movie_social {
       height: 10%;
       padding-left: 15px;
       padding-bottom: 20px;
-      ul {
-        list-style: none;
-        padding: 0;
-        li {
-          display: inline-block;
-          color: rgba(0, 0, 0, 0.3);
+      display: flex;
+      padding: 0 25px;
+      align-items: center;
+      list-style: none;
+      li {
+        display: inline-block;
+        color: rgba(0, 0, 0, 0.3);
+        transition: color 0.3s;
+        transition-delay: 0.15s;
+        margin: 0 10px;
+        &:hover {
           transition: color 0.3s;
-          transition-delay: 0.15s;
-          margin: 0 10px;
-          &:hover {
-            transition: color 0.3s;
-            color: rgba(0, 0, 0, 0.7);
-          }
-          i {
-            font-size: 19px;
-            cursor: pointer;
-          }
+          color: rgba(0, 0, 0, 0.7);
+        }
+        i {
+          font-size: 19px;
+          cursor: pointer;
         }
       }
     }
@@ -104,7 +113,7 @@
     top: 0;
     z-index: 1;
     height: 100%;
-    right: 0;
+    left: 40%;
     background-size: cover;
     border-radius: 11px;
   }
@@ -137,6 +146,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 96px;
+}
+
+.movie-detail-wrapper h2 {
+  margin-bottom: 48px;
+}
+
+.movie-rating {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
 }
 
 .actors_list {
@@ -167,6 +187,8 @@
   background-color: #777;
 }
 
-/* .card_back {
-  background: url("https://fsmedia.imgix.net/cd/c9/5e/ba/4817/4d9a/93f0/c776ec32ecbc/lara-crofts-neck-looks-unnatural-in-the-new-poster-for-tomb-raider.png");
-} */
+.movie-price {
+  font-size: 36px;
+  font-weight: 600;
+  color: #555;
+}

@@ -16,6 +16,7 @@ interface Movie {
 const API_URL = "https://api.themoviedb.org/3/movie";
 const API_KEY = "62bc7d3ed0ea9939e69e5832789c8d7b";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
+const BACKDROP_URL = "https://image.tmdb.org/t/p/original";
 const CAST_NUM_PER_PAGE = 4;
 
 export default function MovieDetail() {
@@ -34,6 +35,7 @@ export default function MovieDetail() {
           const data = await res.json();
           const { cast } = data.credits;
           setMovie(data);
+          console.log(data);
           setCasts(cast.slice(0, CAST_NUM_PER_PAGE));
         } catch (error) {
           console.error(error);
@@ -46,7 +48,7 @@ export default function MovieDetail() {
 
   useEffect(
     function () {
-      async function fetchMovie(id: number) {
+      async function fetchTrailer(id: number) {
         try {
           const res = await fetch(`${API_URL}/${id}/videos?api_key=${API_KEY}`);
           const data = await res.json();
@@ -56,26 +58,16 @@ export default function MovieDetail() {
           console.error(error);
         }
       }
-      fetchMovie(id);
+      fetchTrailer(id);
     },
     [id]
   );
 
-  useEffect(function () {
-    const bg = document.querySelector(`${styles.card_back}`);
-    console.log(bg);
-  }, []);
   return (
     <div className={styles["movie-detail-wrapper"]}>
       <h1 className={styles.heading}>Movie Details</h1>
       {movie && <MovieCard movie={movie} />}
-      <h2 className={styles.section}>Trailer</h2>
-      <iframe
-        width="1080"
-        height="520"
-        src={`https://www.youtube.com/embed/${trailer.key}`}
-      />
-      <h2 className={styles.section}>Actor cast</h2>
+      <MovieTrailer trailer={trailer} />
       <ActorList actors={casts} />
     </div>
   );
@@ -92,12 +84,15 @@ function MovieCard({ movie }: { movie: Movie }) {
             alt="Tomb Raider"
           />
           <h1>{movie.original_title}</h1>
-          <Rating
-            name="read-only"
-            value={movie.vote_average / 2}
-            readOnly
-            sx={{ mt: 1 }}
-          />
+          <div className={styles["movie-rating"]}>
+            <Rating
+              name="read-only"
+              value={movie.vote_average / 2}
+              readOnly
+              sx={{ mt: 1 }}
+            />
+            <span>{movie.vote_count} votes</span>
+          </div>
           <br />
           <span className={styles.minutes}>{movie.runtime} min</span>
           <p className={styles.type}>
@@ -109,24 +104,35 @@ function MovieCard({ movie }: { movie: Movie }) {
         <div className={styles.movie_desc}>
           <p className={styles.text}>{movie.overview}</p>
         </div>
-        <div className={styles.movie_social}>
-          <ul>
-            <li>
-              <i className="material-icons">like</i>
-            </li>
-            <li>
-              <i className="material-icons">share</i>
-            </li>
-            <li>
-              <i className="material-icons">add_to_cart</i>
-            </li>
-          </ul>
-        </div>
+
+        <ul className={styles.movie_social}>
+          <li>
+            <span className={styles["movie-price"]}>$29.00</span>
+          </li>
+          <li>
+            <button className="add-to-cart">Add to cart</button>
+          </li>
+        </ul>
       </div>
       <div
         className={`${styles.blur_back} ${styles.card_back}`}
-        style={{ backgroundImage: `url(${IMG_URL}${movie.backdrop_path})` }}
+        style={{
+          backgroundImage: `url(${BACKDROP_URL}${movie.backdrop_path})`,
+        }}
       ></div>
+    </div>
+  );
+}
+
+function MovieTrailer({ trailer }) {
+  return (
+    <div>
+      <h2 className={styles.section}>Trailer</h2>
+      <iframe
+        width="1080"
+        height="520"
+        src={`https://www.youtube.com/embed/${trailer.key}`}
+      />
     </div>
   );
 }
@@ -134,13 +140,16 @@ function MovieCard({ movie }: { movie: Movie }) {
 function ActorList({ actors }) {
   console.log(actors);
   return (
-    <ul className={styles.actors_list}>
-      {actors.map(actor => (
-        <li key={actor.id}>
-          <ActorCard actor={actor} />
-        </li>
-      ))}
-    </ul>
+    <div>
+      <h2 className={styles.section}>Actor cast</h2>
+      <ul className={styles.actors_list}>
+        {actors.map(actor => (
+          <li key={actor.id}>
+            <ActorCard actor={actor} />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
