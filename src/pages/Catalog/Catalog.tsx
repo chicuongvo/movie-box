@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./Catalog.module.css";
-import { Rating } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const API_URL = "https://api.themoviedb.org/3/movie/popular";
 const API_KEY = "62bc7d3ed0ea9939e69e5832789c8d7b";
@@ -12,6 +12,7 @@ interface Movie {
   original_title: string;
   release_date: string;
   vote_average: number;
+  vote_count: number;
 }
 
 type MovieCardProps = {
@@ -19,6 +20,8 @@ type MovieCardProps = {
   title: string;
   releaseDate: string;
   vote: number;
+  id: string;
+  vote_count: number;
 };
 
 export default function Catalog() {
@@ -74,20 +77,34 @@ function MovieList({ movies }: { movies: Movie[] }) {
           posterSrc={movie.poster_path}
           title={movie.original_title}
           releaseDate={movie.release_date}
-          vote={movie.vote_average / 2}
+          vote={movie.vote_average}
+          id={movie.id}
+          vote_count={movie.vote_count}
         />
       ))}
     </ul>
   );
 }
 
-function MovieCard({ posterSrc, title, releaseDate, vote }: MovieCardProps) {
+function MovieCard({
+  posterSrc,
+  title,
+  releaseDate,
+  vote,
+  id,
+  vote_count,
+}: MovieCardProps) {
   return (
     <div className={styles["card-movie"]}>
-      <img src={`${IMG_URL}${posterSrc}`} className={styles.poster} />
-      <h2>{title}</h2>
-      <p className={styles["release-date"]}>{releaseDate}</p>
-      <Rating name="read-only" value={vote} readOnly sx={{ mt: 1 }} />
+      <Link to={`/movies/${id}`}>
+        <img src={`${IMG_URL}${posterSrc}`} className={styles.poster} />
+      </Link>
+      <Link to={`/movies/${id}`} className={styles["movie-link"]}>
+        <h2 className={styles["movie-title"]}>{title}</h2>
+      </Link>
+      <p className={styles["release-date"]}>{releaseDate.slice(0, 4)}</p>
+      <span>{vote.toFixed(1)} ⭐ </span>
+      <span>{vote_count} ratings</span>
     </div>
   );
 }
