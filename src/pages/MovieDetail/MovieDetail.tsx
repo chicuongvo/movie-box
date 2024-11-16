@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./MovieDetail.module.css";
 import { Rating } from "@mui/material";
+import { useParams } from "react-router-dom";
 
 interface Movie {
   id: string;
@@ -11,6 +12,8 @@ interface Movie {
   overview: string;
   runtime: number;
   backdrop_path: string;
+  vote_count: number;
+  genres: [];
 }
 
 const API_URL = "https://api.themoviedb.org/3/movie";
@@ -22,10 +25,10 @@ const CAST_NUM_PER_PAGE = 4;
 export default function MovieDetail() {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [reviews, setReviews] = useState([]);
-  const [trailer, setTrailer] = useState("");
+  const [trailer, setTrailer] = useState<{ key: string }>({ key: "" });
   const [casts, setCasts] = useState([]);
 
-  const id = 533535;
+  const { id } = useParams();
   useEffect(
     function () {
       async function fetchMovie(id: number) {
@@ -41,7 +44,7 @@ export default function MovieDetail() {
           console.error(error);
         }
       }
-      fetchMovie(id);
+      fetchMovie(+id!);
     },
     [id]
   );
@@ -52,13 +55,15 @@ export default function MovieDetail() {
         try {
           const res = await fetch(`${API_URL}/${id}/videos?api_key=${API_KEY}`);
           const data = await res.json();
-          const trailer = data.results.find(video => video.type === "Trailer");
+          const trailer: { key: string } = data.results.find(
+            (video: { type: string }) => video.type === "Trailer"
+          );
           setTrailer(trailer);
         } catch (error) {
           console.error(error);
         }
       }
-      fetchTrailer(id);
+      fetchTrailer(+id!);
     },
     [id]
   );
@@ -78,7 +83,7 @@ export default function MovieDetail() {
           console.error(error);
         }
       }
-      fetchReviews(id);
+      fetchReviews(+id!);
     },
     [id]
   );
@@ -116,7 +121,7 @@ function MovieCard({ movie }: { movie: Movie }) {
           <br />
           <span className={styles.minutes}>{movie.runtime} min</span>
           <p className={styles.type}>
-            {movie.genres.map(genre => (
+            {movie.genres.map((genre: { id: number; name: string }) => (
               <span key={genre.id}>{genre.name} - </span>
             ))}
           </p>
@@ -144,7 +149,7 @@ function MovieCard({ movie }: { movie: Movie }) {
   );
 }
 
-function MovieTrailer({ trailer }) {
+function MovieTrailer({ trailer }: { trailer: { key: string } }) {
   return (
     <div>
       <h2 className={styles.section}>Trailer</h2>
@@ -157,22 +162,32 @@ function MovieTrailer({ trailer }) {
   );
 }
 
-function ActorList({ actors }) {
+function ActorList({
+  actors,
+}: {
+  actors: { id: number; profile_path: string; name: string }[];
+}) {
   return (
     <div>
       <h2 className={styles.section}>Actor cast</h2>
       <ul className={styles.actors_list}>
-        {actors.map(actor => (
-          <li key={actor.id}>
-            <ActorCard actor={actor} />
-          </li>
-        ))}
+        {actors.map(
+          (actor: { id: number; profile_path: string; name: string }) => (
+            <li key={actor.id}>
+              <ActorCard actor={actor} />
+            </li>
+          )
+        )}
       </ul>
     </div>
   );
 }
 
-function ActorCard({ actor }) {
+function ActorCard({
+  actor,
+}: {
+  actor: { id: number; profile_path: string; name: string };
+}) {
   return (
     <div className={styles.actor_card}>
       <img
@@ -184,18 +199,27 @@ function ActorCard({ actor }) {
   );
 }
 
-function Reviews({ reviews }) {
+function Reviews({
+  reviews,
+}: {
+  reviews: {
+    author: string;
+    content: string;
+    created_at: string;
+    id: number;
+  }[];
+}) {
   return (
     <div>
       <h2 className={styles.section}>Review</h2>
-      {reviews.map((review, i) => (
+      {reviews.map((review, i: number) => (
         <ReviewCard key={review.id} review={review} id={i}></ReviewCard>
       ))}
     </div>
   );
 }
 
-function formatDate(isoDate) {
+function formatDate(isoDate: string) {
   const date = new Date(isoDate);
 
   // Format the date as DD/MM/YYYY
@@ -207,7 +231,13 @@ function formatDate(isoDate) {
   return formattedDate;
 }
 
-function ReviewCard({ review, id }) {
+function ReviewCard({
+  review,
+  id,
+}: {
+  review: { author: string; content: string; created_at: string; id: number };
+  id: number;
+}) {
   return (
     <div className={styles["review-card"]}>
       <img
@@ -219,7 +249,7 @@ function ReviewCard({ review, id }) {
           <h3>{review.author}</h3>
           <span>{formatDate(review.created_at)}</span>
         </div>
-        <p>{review.content.slice(0, 150)}</p>
+        <p>{review.content.slice(0, 150)} ...</p>
       </div>
     </div>
   );
