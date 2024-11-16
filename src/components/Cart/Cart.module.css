@@ -1,30 +1,14 @@
-/* Full-page container */
-.pageContainer {
+.cart {
+  font-family: Arial, sans-serif;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: #f3f3f3;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-/* Cart container */
-.cartContainer {
-  display: flex;
-  max-width: 1000px;
-  width: 100%;
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
   gap: 20px;
+  margin-left: 170px;
+  margin-right: 170px;
 }
 
-/* Cart items */
-.cartItems {
-  flex: 3;
+.cartTableSection {
+  margin-bottom: 20px;
 }
 
 .cartTable {
@@ -33,111 +17,106 @@
   margin-bottom: 20px;
 }
 
-.cartTable th,
+.cartTable th {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
 .cartTable td {
   padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
 }
 
-.cartTable th {
-  background-color: #d32f2f;
-  color: white;
-  font-weight: bold;
+.cartTable tbody {
+  height: 55px;
 }
 
-.cartTable td {
-  font-size: 16px;
-}
-
-/* Quantity controls */
-.quantityControl {
+.cartActions {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 5px;
-}
-
-.quantityButton {
-  width: 30px;
-  height: 30px;
-  background-color: #d32f2f;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-  font-weight: bold;
-}
-
-.quantityValue {
-  min-width: 20px;
-  text-align: center;
-}
-
-/* Coupon and button styling */
-.couponContainer {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  padding: 10px 0;
 }
 
 .couponInput {
-  flex: 1;
-  padding: 10px;
+  height: 40px;
+  padding: 8px;
+  background-color: white;
+  color: black;
+  margin-right: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  background-color: #333;
-  color: white;
+  flex: 0.2;
 }
 
-.applyCouponButton,
-.updateCartButton {
-  background-color: #d32f2f;
+.couponInput {
+  background-color: #f9f9f9;
+  height: 40px; /* Đặt chiều cao giống với button */
+  padding: 0 12px; /* Padding bên trong input */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box; /* Đảm bảo border không làm tăng chiều cao */
+  font-size: 16px; /* Đồng nhất kích thước chữ */
+}
+
+.couponButton,
+.updateButton {
+  background-color: #dc3545;
   color: white;
-  padding: 10px 20px;
   border: none;
+  padding: 10px;
   cursor: pointer;
   border-radius: 4px;
   font-weight: bold;
+  height: 40px;
+  width: 150px;
 }
 
-/* Cart totals */
+.couponButton:hover,
+.updateButton:hover {
+  background-color: #c82333;
+}
+
+.cartTotalsSection {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 50px;
+}
+
 .cartTotals {
-  flex: 1;
-  background-color: #f8f8f8;
+  width: 300px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 20px;
+  background: white;
 }
 
-.cartTotalsTitle {
-  background-color: #d32f2f;
+.cartTotals h2 {
+  background-color: #dc3545;
   color: white;
   padding: 10px;
-  font-weight: bold;
-  text-align: left;
+  margin: -20px -20px 20px -20px;
+  text-align: center;
 }
 
-.totalContainer {
-  padding: 15px;
-}
-
-.totalContainer p {
+.totalsRow {
   display: flex;
   justify-content: space-between;
-  font-weight: bold;
-  margin: 5px 0;
-  font-size: 16px;
+  margin-bottom: 10px;
 }
 
-/* Checkout button */
 .checkoutButton {
-  width: 100%;
-  padding: 15px;
-  background-color: #d32f2f;
+  background-color: #dc3545;
   color: white;
   border: none;
+  padding: 10px 20px;
   cursor: pointer;
   border-radius: 4px;
-  margin-top: 10px;
   font-weight: bold;
-  font-size: 16px;
+  width: 100%;
+}
+
+.checkoutButton:hover {
+  background-color: #c82333;
 }

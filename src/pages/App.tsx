@@ -16,15 +16,6 @@ function App() {
     <>
       <NavBar></NavBar>
       <LandingContainer>
-        <Hero></Hero>
-        <FeaturedIn></FeaturedIn>
-        <CoreProblem></CoreProblem>
-        <HowItWorks></HowItWorks>
-        <Archive></Archive>
-        <Story></Story>
-        <Plan></Plan>
-        <Question></Question>
-        <EndPage></EndPage>
         <Cart />
         <CheckoutPage />
       </LandingContainer>
