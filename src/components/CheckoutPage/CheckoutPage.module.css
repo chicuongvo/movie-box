@@ -1,0 +1,189 @@
+.checkoutContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.infoSection {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.infoSection h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.link {
+  color: #d32f2f;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.section h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.formGrid input,
+.formGrid textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.formGrid textarea {
+  grid-column: span 2;
+  resize: none;
+}
+
+.orderTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.orderTable th,
+.orderTable td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.orderTable th {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+}
+
+.checkoutContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.section h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Payment Options Styling */
+.checkoutContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.section h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Payment Options Styling */
+.paymentOptions {
+  margin-top: 15px;
+}
+
+.paymentOption {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.paymentOption:hover {
+  border-color: #d32f2f;
+}
+
+.radioInput {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  background-color: white;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Gray background when checked */
+.radioInput:checked {
+  background-color: #d32f2f;
+  border-color: #d32f2f;
+}
+
+/* Label Styling */
+.paymentLabel {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Description Styling */
+.paymentDescription {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+  line-height: 1.5;
+}
+
+/* PayPal Info Link */
+.paypalInfo {
+  font-size: 14px;
+  color: #d32f2f;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+/* Payment Icons Styling */
+.paymentIcons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.paymentIcons img {
+  width: 50px;
+  height: auto;
+}

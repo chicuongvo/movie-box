@@ -1,0 +1,143 @@
+/* Full-page container */
+.pageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f3f3f3;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Cart container */
+.cartContainer {
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+}
+
+/* Cart items */
+.cartItems {
+  flex: 3;
+}
+
+.cartTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.cartTable th,
+.cartTable td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.cartTable th {
+  background-color: #d32f2f;
+  color: white;
+  font-weight: bold;
+}
+
+.cartTable td {
+  font-size: 16px;
+}
+
+/* Quantity controls */
+.quantityControl {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quantityButton {
+  width: 30px;
+  height: 30px;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.quantityValue {
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Coupon and button styling */
+.couponContainer {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.couponInput {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #333;
+  color: white;
+}
+
+.applyCouponButton,
+.updateCartButton {
+  background-color: #d32f2f;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Cart totals */
+.cartTotals {
+  flex: 1;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.cartTotalsTitle {
+  background-color: #d32f2f;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.totalContainer {
+  padding: 15px;
+}
+
+.totalContainer p {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+/* Checkout button */
+.checkoutButton {
+  width: 100%;
+  padding: 15px;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
