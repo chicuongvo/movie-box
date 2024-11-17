@@ -10,7 +10,7 @@ function App() {
         <Routes>
           <Route path="movies" element={<Catalog />}></Route>
           <Route path="movies/:id" element={<MovieDetail />}></Route>
-          <Route path="cart" element={<Cart/>}></Route>
+          <Route path="cart" element={<Cart />}></Route>
         </Routes>
       </BrowserRouter>
     </>
