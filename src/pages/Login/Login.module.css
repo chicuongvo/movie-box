@@ -1,0 +1,29 @@
+.section-login {
+  color: #333;
+  text-transform: uppercase;
+}
+
+.input {
+  background-color: #fff;
+  border: 1px solid #333;
+  color: #333;
+  font-size: 16px;
+}
+
+.input[type="text"] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+}
+
+.input[type="password"] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+}
+
+.btn[type="submit"] {
+  font-size: 16px;
+  width: fit-content;
+  padding: 12px 24px;
+}
