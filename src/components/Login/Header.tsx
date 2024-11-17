@@ -1,10 +1,11 @@
+import styles from "../../pages/Login/Login.module.css";
+
 export default function Header() {
   return (
     <>
-      <section className="section-login text--center mb--large">
+      <section className={`${styles["section-login"]} text--center`}>
         <div className="container">
-          <h3>WELCOME</h3>
-          <h1>LOGIN</h1>
+          <h1>Welcome</h1>
         </div>
       </section>
     </>
