@@ -9,8 +9,8 @@
   /*background-color: ;*/
 
   font-synthesis: none;
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
 }
 
 a {
@@ -34,12 +34,12 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   margin: 0;
-  padding:0;
+  padding: 0;
 }
 
 body {
   margin: 0;
-  padding:0;
+  padding: 0;
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
@@ -53,12 +53,13 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.8em 1.6em;
+  /* padding: 0.8em 1.6em; */
   text-transform: uppercase;
   font-size: 1.2em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #e03131;
+  /* background-color: #e03131; */
+  background-color: #fff;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -526,8 +527,3 @@ ul.question_items li {
   padding: 96px 32px;
   border-radius: 30px;
 }
-<<<<<<< HEAD
-=======
-
-/*LOGIN*/
->>>>>>> tungduong

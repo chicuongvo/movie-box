@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./CheckoutPage.module.css";
+import { useSearchParams } from "react-router-dom";
 
 const Checkout: React.FC = () => {
+  const [query] = useSearchParams();
+  const total = +query.get("total")!;
+  console.log(total);
   return (
     <div className={styles.checkoutContainer}>
       {/* Returning Customer Section */}
@@ -71,12 +75,8 @@ const Checkout: React.FC = () => {
           </thead>
           <tbody>
             <tr>
-              <td>Reebok Detroit Red Wing</td>
-              <td>$29.00</td>
-            </tr>
-            <tr>
               <td>Subtotal</td>
-              <td>$29.00</td>
+              <td>${total!.toFixed(2)}</td>
             </tr>
             <tr>
               <td>Shipping</td>
@@ -86,7 +86,7 @@ const Checkout: React.FC = () => {
             </tr>
             <tr>
               <td>Total</td>
-              <td>$29.00</td>
+              <td>${total!.toFixed(2)}</td>
             </tr>
           </tbody>
         </table>

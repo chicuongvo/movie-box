@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CartItem from "../../components/CartItem/CartItem.tsx";
 import styles from "./Cart.module.css";
+import { Link } from "react-router-dom";
 
 interface Product {
   id: number;
@@ -83,7 +84,11 @@ const Cart: React.FC = () => {
             <span>Total:</span>
             <span style={{ fontWeight: "bold" }}>${subtotal.toFixed(2)}</span>
           </div>
-          <button className={styles.checkoutButton}>Proceed to Checkout</button>
+          <Link to={`/checkout?total=${subtotal}`}>
+            <button className={styles.checkoutButton}>
+              Proceed to Checkout
+            </button>
+          </Link>
         </div>
       </div>
     </div>
