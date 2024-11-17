@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+.wrapper {
+    width: 100% ;
+    padding: 0;
+    margin: 0;
+}
+
+.featured-movies-container {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a0a0a;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.featured-movies-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+.featured-movies img {
+    width: 547px;
+    height: 349px;
+    filter: brightness(0.6); /* Darken the image by default */
+    transition: filter 0.5s ease; /* Smooth transition */
+}
+
+
+.featured-movies-title{
+    font-family: "Roboto Slab", serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+    transition: .4s ease-in-out;
+}
+
+.featured-movies img:hover {
+    filter: brightness(1); /* Brighten the image on hover */
+    cursor: pointer;
+}
+
+.featured-movies-title:hover{
+    color: rgb(176, 21, 21);
+    cursor: pointer;
+}
+
+.featured-movies-description {
+    color: rgba(255, 255, 255, 0.4);
+    font-family: "Poppins", serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.dot-container {
+    text-align: center;
+    display: flex;
+    align-items: flex-end;
+    height: 50px;
+
+}
+  
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0px 6px;
+    background-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: .4s ease-in-out;
+    border: 2px solid white;
+}
+  
+.dot.active {
+    background-color: white;
+}
+  
+
+.list-movies-container {
+    height: 1400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 30px;
+    
+}
+
+.list-movie-option{
+    width: 540px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-movie-button {
+    width: 169px;
+    height: 60px;
+    border: 2px solid #d81a24;
+    color: #d81a24;
+    font-family:  "Roboto Slab", serif;
+    font-size: 18px;
+    font-weight: 700;
+    transition: .4s ease-in-out;
+}
+
+.list-movie-button:hover {
+    color: white;
+    background-color: #d81a24;
+    cursor: pointer;
+    border: 2px solid #d81a24;
+    transition: .4s ease-in-out;
+}
+
+.active-button
+{
+    color: white;
+    background-color: #d81a24;
+    cursor: pointer;
+    border: 2px solid #d81a24;
+}
+
+.list-movies-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 30px; /* Space between movies */
+    justify-items: center;
+    align-items: center;
+    padding-top: 30px;
+   
+}
+
+.list-movies {
+    width: 300px;
+    height: 485px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.list-movies img {
+    width: 273px;
+    height: 379px;
+    transition: filter 0.5s ease;
+}
+
+.list-movies-heading {
+    font-size: 46px;
+    font-weight: 800;
+    height: 200;
+    transition: .4s ease-in-out;
+    font-family: "Roboto Slab", serif;
+}
+
+.list-movies img:hover {
+    filter: brightness(0.4);
+    cursor: pointer;
+}
+
+
+.list-movies-description {
+    color: #b7b7b7;
+    font-family: "Poppins", serif;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.list-movies-title {
+    font-size: 18px;
+    font-weight: 600;
+    height: 200;
+    transition: .4s ease-in-out;
+    font-family: "Roboto Slab", serif;
+}
+
+.list-movies-title:hover{
+    color: rgb(176, 21, 21);
+    cursor: pointer;
+}
+
+.coming-soon{
+    height: 854px;
+    width: 100%;
+    background-color: #151515;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    padding-top: 100px;
+}
+
+.coming-soon-title {
+    font-size: 46px;
+    font-weight: 800;
+    color: white;
+    font-family: "Roboto Slab", serif;
+}
+
+.coming-soon-container {
+    width: 1200px;
+    height: 355px;
+    color: white;
+    display: flex;
+}
+
+.coming-soon-video-box {
+    width: 570px;
+    height: 410px;
+}
+
+.coming-soon-video {
+    width: 600px;
+    height: 410px;
+}
+
+.coming-soon-movie {
+    width: 600px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.coming-soon-movie-title{
+    font-size: 30px;
+    font-family: "Roboto Slab", serif;
+    font-weight: 500;
+    padding-bottom: 20px;
+}
+
+.coming-soon-movie-description {
+    font-size: 16px;
+    font-family: "Poppins", serif;
+    line-height: 1.75;
+    font-weight: 300;
+    display: flex;
+    row-gap: 7px;
+    flex-direction: column;
+}
+
+.bold-text {
+    font-weight: bold;
+  }
+
+.add-to-watchlist {
+    border: 2px solid #d81a24;
+    color: white;
+    font-family:  "Roboto Slab", serif;
+    font-size: 18px;
+    font-weight: 700;
+    transition: .4s ease-in-out;
+    background-color: transparent;
+    height: 59px;
+    width: 261px;
+}
+
+.add-to-watchlist:hover{
+    background-color: rgb(176, 21, 21);
+    cursor: pointer;
+    border: 2px solid #d81a24;
+}
+
+.newsletter-form {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-image: url(https://yt3.googleusercontent.com/H-WT0R4wJboNDZvgRGhQzyT2PUHlVvWJTBCvha9-RXtD2zlMFQjQNeSM9aA4E3T1tQ1-9D12a1g=w1280-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: space-around;
+    flex-direction: column;
+}
+
+.newsletter-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
+    z-index: 0;
+}
+
+.newsletter-form-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    width: 570px;
+    height: 60px;
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subscribe-form {
+    width: 332px;
+    height: 60px;
+    border-radius: 10px;
+    color: #ffffff;
+    background-color: rgba(246, 246, 246, 0.3);
+    border: 1px solid transparent;
+    padding: 12px 18px;
+    font-family: "Poppins", serif;
+    font-size: 16px;
+}
+
+.subscribe-form::placeholder
+{
+    color: #ffffff;
+}
+
+.subscribe-button {
+    width: 228px;
+    height: 60px;
+    font-family:  "Roboto Slab", serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 15px 40px;
+    border:none;
+    background-color: #d81a24;
+    color: white;
+    border: 2px solid #d81a24;
+}
+
+.subscribe-button:hover {
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid #d81a24;
+    transition: .4s ease-in-out;
+}
+
+.newsletter-form-descrtiption {
+    width: 570px;
+    height: 64px;
+    margin: 10px 0 8px;
+    color: #ffffff;
+    font-size: 16px;
+    z-index: 1;
+    font-family: "Poppins", serif;
+    font-weight: 300;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.divider {
+    border: none;
+    border-top: 2px solid #ccc;
+    width: 5%;
+}

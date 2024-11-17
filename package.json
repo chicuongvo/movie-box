@@ -10,11 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@emotion/styled": "^11.13.0",
     "@mantine/core": "^7.14.0",
     "@mantine/hooks": "^7.14.0",
     "@mui/material": "^6.1.7",
     "@mui/styled-engine": "^6.1.7",
+=======
+    "@fontsource/noto-sans-arabic": "^5.1.0",
+    "@fontsource/roboto-slab": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+>>>>>>> khanhngoc
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0"
