@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CartItem from "../CartItem/CartItem.tsx";
+import CartItem from "../../components/CartItem/CartItem.tsx";
 import styles from "./Cart.module.css";
 
 interface Product {
@@ -21,13 +21,13 @@ const Cart: React.FC = () => {
   ]);
 
   const updateQuantity = (id: number, quantity: number) => {
-    setCart((prevCart) =>
-      prevCart.map((item) => (item.id === id ? { ...item, quantity } : item))
+    setCart(prevCart =>
+      prevCart.map(item => (item.id === id ? { ...item, quantity } : item))
     );
   };
 
   const removeItem = (id: number) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+    setCart(prevCart => prevCart.filter(item => item.id !== id));
   };
 
   const subtotal = cart.reduce(
@@ -49,7 +49,7 @@ const Cart: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {cart.map((product) => (
+            {cart.map(product => (
               <CartItem
                 key={product.id}
                 product={product}

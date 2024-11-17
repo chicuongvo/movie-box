@@ -70,8 +70,6 @@
   cursor: pointer;
   border-radius: 4px;
   font-weight: bold;
-  height: 40px;
-  width: 150px;
 }
 
 .couponButton:hover,

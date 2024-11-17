@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MovieDetail from "./MovieDetail/MovieDetail.tsx";
 import Catalog from "./Catalog/Catalog.tsx";
-import Cart from "../components/Cart/Cart.tsx";
+import Cart from "./Cart/Cart.tsx";
 
 function App() {
   return (
