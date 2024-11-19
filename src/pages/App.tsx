@@ -5,10 +5,12 @@ import Cart from "./Cart/Cart.tsx";
 import HomePage from "./HomePage/HomePage.tsx";
 import Login from "./Login/Login.tsx";
 import Checkout from "../components/CheckoutPage/CheckoutPage.tsx";
+import NavBar from "../components/NavBar.tsx";
 
 function App() {
   return (
     <>
+      <NavBar />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />}></Route>

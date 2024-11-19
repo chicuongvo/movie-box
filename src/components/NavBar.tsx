@@ -3,11 +3,11 @@ import Logo from "../assets/favicon.png";
 const navItems = [
   {
     title: `Home`,
-    link: `#home`,
+    link: `/`,
   },
   {
-    title: `Features`,
-    link: `#features`,
+    title: `Movies`,
+    link: `/movies`,
   },
   {
     title: `Pricing`,

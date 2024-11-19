@@ -226,3 +226,8 @@
   justify-content: space-between;
   margin-bottom: 8px;
 }
+
+.add-to-cart {
+  padding: 8px 16px;
+  background-color: var(--color--primary);
+}

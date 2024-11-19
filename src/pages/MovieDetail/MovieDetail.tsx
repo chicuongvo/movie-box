@@ -37,8 +37,8 @@ export default function MovieDetail() {
             `${API_URL}/${id}?api_key=${API_KEY}&append_to_response=credits`
           );
           const data = await res.json();
-          const { cast } = data.credits;
           setMovie(data);
+          const { cast } = data.credits;
           setCasts(cast.slice(0, CAST_NUM_PER_PAGE));
         } catch (error) {
           console.error(error);
@@ -78,7 +78,6 @@ export default function MovieDetail() {
           const data = await res.json();
           const reviews = data.results.slice(0, 4);
           setReviews(reviews);
-          console.log(reviews);
         } catch (error) {
           console.error(error);
         }
@@ -135,7 +134,7 @@ function MovieCard({ movie }: { movie: Movie }) {
             <span className={styles["movie-price"]}>$29.00</span>
           </li>
           <li>
-            <button className="add-to-cart">Add to cart</button>
+            <button className={styles["add-to-cart"]}>Add to cart</button>
           </li>
         </ul>
       </div>
