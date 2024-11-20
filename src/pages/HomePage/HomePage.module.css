@@ -103,7 +103,7 @@
   color: #d81a24;
   font-family: "Roboto Slab", serif;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 800;
   transition: 0.4s ease-in-out;
 }
 
@@ -155,8 +155,9 @@
 }
 
 .list-movies img:hover {
-  filter: brightness(0.4);
   cursor: pointer;
+  transform: scale(1.05);
+  transition: transform 0.5s ease;
 }
 
 .list-movies-description {
@@ -170,8 +171,10 @@
   font-size: 18px;
   font-weight: 600;
   height: 200;
-  transition: 0.4s ease-in-out;
+  transition: 0.3s ease-in-out;
   font-family: "Roboto Slab", serif;
+  text-decoration: none;
+  color: black;
 }
 
 .list-movies-title:hover {
@@ -203,6 +206,7 @@
   height: 355px;
   color: white;
   display: flex;
+  justify-content: space-between;
 }
 
 .coming-soon-video-box {
@@ -296,15 +300,15 @@
   width: 570px;
   height: 60px;
   display: flex;
-  align-content: center;
+
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 
 .subscribe-form {
   width: 332px;
-  height: 60px;
+  height: 50px;
   border-radius: 10px;
   color: #ffffff;
   background-color: rgba(246, 246, 246, 0.3);
@@ -319,16 +323,18 @@
 }
 
 .subscribe-button {
-  width: 228px;
-  height: 60px;
+  width: 200px;
+  height: 50px;
   font-family: "Roboto Slab", serif;
   font-size: 18px;
   font-weight: 700;
-  padding: 15px 40px;
-  border: none;
   background-color: #d81a24;
   color: white;
   border: 2px solid #d81a24;
+  align-items: center;
+  display: flex
+;
+  justify-content: center;
 }
 
 .subscribe-button:hover {
