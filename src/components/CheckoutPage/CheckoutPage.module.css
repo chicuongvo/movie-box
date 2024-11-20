@@ -47,6 +47,7 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #f9f9f9;
+  color: black;
 }
 
 .formGrid textarea {
@@ -92,7 +93,9 @@
   color: #333;
 }
 
-/* Payment Options Styling */
+.paymentSection {
+  background-color: #f9f9f9;
+}
 .checkoutContainer {
   width: 100%;
   max-width: 800px;
@@ -113,51 +116,54 @@
 }
 
 /* Payment Options Styling */
-.paymentOptions {
-  margin-top: 15px;
-}
 
 .paymentOption {
   display: flex;
-  flex-direction: column;
+  align-items: center; /* Căn giữa checkbox và text theo chiều dọc */
   padding: 10px;
-  border: 2px solid #e0e0e0;
   border-radius: 8px;
-  margin-bottom: 15px;
   transition: border-color 0.3s ease;
   cursor: pointer;
-}
-
-.paymentOption:hover {
-  border-color: #d32f2f;
 }
 
 .radioInput {
   appearance: none;
   -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   border: 2px solid #ccc;
   border-radius: 50%;
-  background-color: white;
-  margin-right: 10px;
+  background-color: #f9f9f9;
+  margin-right: 10px; /* Khoảng cách giữa checkbox và văn bản */
   cursor: pointer;
   position: relative;
   outline: none;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  display: flex;
+  align-items: center; /* Căn giữa nội dung trong checkbox */
+  justify-content: center; /* Căn giữa dấu tick trong checkbox */
 }
 
-/* Gray background when checked */
+/* Khi checkbox được chọn */
 .radioInput:checked {
-  background-color: #d32f2f;
-  border-color: #d32f2f;
+  background-color: #ccc; /* Nền trắng */
+  border-color: #ccc; /* Viền màu đen */
 }
 
-/* Label Styling */
+/* Hiển thị dấu tick khi chọn */
+.radioInput:checked::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc; /* Dấu tick màu đen */
+}
+
 .paymentLabel {
   font-weight: bold;
   color: #333;
-  margin-bottom: 5px;
+  font-size: 16px; /* Kích thước chữ */
 }
 
 /* Description Styling */
@@ -166,14 +172,6 @@
   color: #666;
   margin-top: 5px;
   line-height: 1.5;
-}
-
-/* PayPal Info Link */
-.paypalInfo {
-  font-size: 14px;
-  color: #d32f2f;
-  text-decoration: none;
-  margin-top: 5px;
 }
 
 /* Payment Icons Styling */
@@ -186,4 +184,67 @@
 .paymentIcons img {
   width: 50px;
   height: auto;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 14px; /* Kích thước chữ */
+  background-color: white;
+}
+
+.checkboxLabel input {
+  -webkit-appearance: none; /* Xóa kiểu mặc định của checkbox */
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #f9f9f9; /* Nền trắng */
+  width: 15px;
+  height: 15px;
+  border-radius: 4px; /* Góc bo tròn (nếu cần) */
+  display: inline-block;
+  cursor: pointer; /* Hiển thị con trỏ dạng "hand" */
+  position: relative;
+  transition: all 0.2s ease; /* Hiệu ứng mượt */
+  border: 1px solid #ddd;
+}
+
+.checkboxLabel input:checked {
+  background-color: white; /* Nền vẫn giữ màu trắng */
+}
+
+.checkboxLabel input:checked::after {
+  content: "✔"; /* Dấu tick */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black; /* Dấu tick màu đen */
+  font-size: 12px; /* Kích thước dấu tick */
+  font-weight: bold;
+}
+
+.checkboxLabel:hover input {
+  border-color: gray; /* Thay đổi màu viền khi hover (tùy chọn) */
+}
+
+.placeOrderButton {
+  background-color: #333333;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.placeOrderButton:hover {
+  background-color: #b6b7b6;
+}
+
+.placeOrderButtonSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
