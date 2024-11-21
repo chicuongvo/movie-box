@@ -1,10 +1,10 @@
-import Main from "../../components/Login/Main.tsx";
+import Main from "../../components/SignUp/Main.tsx";
 
 function LandingContainer({ children }: { children: React.ReactNode }) {
   return <div className="container">{children}</div>;
 }
 
-export default function Login() {
+export default function SignUp() {
   return (
     <>
       <LandingContainer>
