@@ -1,52 +1,53 @@
 import FeedbackList from "./FeedbackList/FeedbackList";
 import styles from "./HomePage.module.css";
 import React, { useState, useEffect } from "react";
-interface Cast {
-  id: string;
-  movie_id: number;
-  name: string;
-  original_name: string;
-  popularity: number;
-  profile_path: string;
-  character: string;
-}
+import { Link } from "react-router-dom";
 
+const API_URL = "https://api.themoviedb.org/3/movie/popular";
+const API_KEY = "62bc7d3ed0ea9939e69e5832789c8d7b";
+const IMG_URL = "https://image.tmdb.org/t/p/w500";
 interface Movie {
   id: string;
-  movie_id: number;
-  original_title: string;
-  original_language: string;
-  overview: string;
-  popularity: number;
   poster_path: string;
-  backdrop_path: string;
+  backdrop_path?: string; // Add this property
+  original_title: string;
   release_date: string;
   vote_average: number;
   vote_count: number;
-  adult: boolean;
-  casts: Cast[];
+  overview: string;
 }
 
 const MovieCard1 = ({ movie }: { movie: Movie }) => (
-  <div className={styles["featured-movies"]}>
-    <img src={movie.backdrop_path} alt={movie.original_title} />
-    <div className={styles["featured-movies-title"]}>
-      {movie.original_title}
+  <Link to={`/movies/${movie.id}`}>
+    <div className={styles["featured-movies"]}>
+      <img
+        src={`${IMG_URL}${movie.backdrop_path}`}
+        alt={movie.original_title}
+      />
+      <div className={styles["featured-movies-title"]}>
+        {movie.original_title}
+      </div>
+      <div className={styles["featured-movies-description"]}>
+        Release Date: {movie.release_date}
+      </div>
     </div>
-    <div className={styles["featured-movies-description"]}>
-      Release Date: {movie.release_date}
-    </div>
-  </div>
+  </Link>
 );
 
 const MovieCard2 = ({ movie }: { movie: Movie }) => (
-  <div className={styles["list-movies"]}>
-    <img src={movie.poster_path} alt={movie.original_title} />
-    <div className={styles["list-movies-title"]}>{movie.original_title}</div>
-    <div className={styles["list-movies-description"]}>
-      Release Date: {movie.release_date}
+  <Link to={`/movies/${movie.id}`}>
+    <div className={styles["list-movies"]}>
+      <img src={`${IMG_URL}${movie.poster_path}`} alt={movie.original_title} />
+      <div className={styles["list-movies-title"]}>{movie.original_title}</div>
+      <div className={styles["list-movies-description"]}>
+        Release Date: {movie.release_date}
+        <div className={styles["list-movies-vote"]}>
+          <span>{movie.vote_average.toFixed(1)} ⭐ </span>
+          <span>{movie.vote_count} ratings </span>
+        </div>
+      </div>
     </div>
-  </div>
+  </Link>
 );
 
 const MovieCard3 = ({ movie }: { movie: Movie }) => (
@@ -60,9 +61,12 @@ const MovieCard3 = ({ movie }: { movie: Movie }) => (
         {movie.release_date}
       </div>
       <div>
-        <span className={styles["bold-text"]}>IDMB:</span> {movie.vote_average}
+        <span className={styles["bold-text"]}>IDMB:</span>{" "}
+        {movie.vote_average.toFixed(1)}
       </div>
-      <div>{movie.overview}</div>
+      <div className={styles["coming-soon-movie-overview"]}>
+        {movie.overview}
+      </div>
     </div>
   </div>
 );
@@ -74,19 +78,45 @@ export default function HomePage() {
   const [displayedMovies, setDisplayedMovies] = useState<Movie[]>([]);
   const [activeCategory, setActiveCategory] = useState("Top Rated");
   const [comingSoonMovie, setComingSoonMovie] = useState<Movie | null>(null);
+  const [trailer, setTrailer] = useState<{ key: string }>({ key: "" });
+
+  useEffect(function () {
+    async function fetchMovies() {
+      try {
+        const res = await fetch(`${API_URL}?api_key=${API_KEY}`);
+        const data = await res.json();
+        console.log(data.results);
+        setMovies(data.results);
+        setSlides(createSlides(data.results));
+        displayRandomMovies(data.results); // Default display for "Top Rated"
+        setComingSoonMovie(pickRandomComingMovie(data.results));
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchMovies();
+  }, []);
 
   useEffect(() => {
-    const URL = "https://jsonfakery.com/movies/paginated/";
-    console.log(URL);
-    fetch(URL)
-      .then((response) => response.json())
-      .then((data) => {
-        setMovies(data.data);
-        setSlides(createSlides(data.data));
-        displayRandomMovies(data.data); // Default display for "Top Rated"
-        setComingSoonMovie(pickRandomComingMovie(data.data));
-      });
-  }, []);
+    if (comingSoonMovie?.id) {
+      async function fetchTrailer(id: number) {
+        try {
+          const res = await fetch(
+            `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`
+          );
+          const data = await res.json();
+          const trailer = data.results.find(
+            (video: { type: string }) => video.type === "Trailer"
+          );
+          setTrailer(trailer || null);
+        } catch (error) {
+          console.error("Error fetching trailer:", error);
+        }
+      }
+      fetchTrailer(Number(comingSoonMovie.id));
+    }
+  }, [comingSoonMovie]);
 
   const createSlides = (moviesArray: Movie[]) => {
     const slides = [];
@@ -125,7 +155,7 @@ export default function HomePage() {
     }
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
       handleSubscribe();
@@ -195,9 +225,18 @@ export default function HomePage() {
       <div className={styles["coming-soon"]}>
         <div className={styles["coming-soon-title"]}>COMING SOON</div>
         <hr className={styles["divider"]} />
-        {comingSoonMovie && (
+        {comingSoonMovie && trailer && (
           <div className={styles["coming-soon-container"]}>
-            <div className={styles["coming-soon-video-box"]}></div>
+            <div className={styles["coming-soon-video-box"]}>
+              <iframe
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${trailer.key}`}
+                title="Trailer"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
             <MovieCard3 movie={comingSoonMovie} />
           </div>
         )}
