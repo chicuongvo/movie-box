@@ -1,17 +1,31 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+
 import MovieDetail from "./MovieDetail/MovieDetail.tsx";
 import Catalog from "./Catalog/Catalog.tsx";
 import Cart from "./Cart/Cart.tsx";
 import HomePage from "./HomePage/HomePage.tsx";
 import Login from "./Login/Login.tsx";
 import Checkout from "../components/CheckoutPage/CheckoutPage.tsx";
-import NavBar from "../components/NavBar.tsx";
+import NavBar from "../components/Navbar/NavBar.tsx";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   return (
     <>
-      <NavBar />
       <BrowserRouter>
+        <ScrollToTop />
+        <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="login" element={<Login />}></Route>

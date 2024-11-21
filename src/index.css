@@ -32,7 +32,6 @@ a:hover {
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
   margin: 0;
   padding: 0;
 }
@@ -42,7 +41,6 @@ body {
   padding: 0;
   min-width: 320px;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 h1 {
@@ -186,12 +184,15 @@ ul {
 /* NAV */
 .nav-wrapper {
   background-color: #fffefe;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   position: sticky;
   top: 0;
+  z-index: 999;
 }
 
 .nav {
-  padding: 16px 0;
+  padding: 8px 96px;
+  font-size: 18px;
   display: flex;
   align-items: center;
   gap: 32px;
