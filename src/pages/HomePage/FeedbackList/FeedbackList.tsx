@@ -4,6 +4,7 @@ import avatar from "../../../assets/avatar.png";
 
 interface Feedback {
   id: number;
+  _id?: string;
   username: string;
   feedback: string;
 }
@@ -56,6 +57,7 @@ const FeedbackList = () => {
           setFeedbacks([...feedbacks, feedback]);
           setNewFeedback("");
           setUsername("");
+          console.log(feedbacks);
         } else {
           console.error("Failed to add feedback");
         }
@@ -69,17 +71,17 @@ const FeedbackList = () => {
     <div className={styles["feedback-wrapper"]}>
       <div className={styles["feedback-title"]}>FEEDBACK</div>
 
-      <div className={styles["feedback-container"]}>
-        {feedbacks.slice(-3).map((feedback) => (
-          <div key={feedback.id} className={styles["feedback-content"]}>
+      <ul className={styles["feedback-container"]}>
+        {feedbacks.slice(-3).map(feedback => (
+          <li key={feedback._id} className={styles["feedback-content"]}>
             <div className={styles["feedback"]}>{feedback.feedback}</div>
             <div className={styles["user-info"]}>
               <img src={avatar} alt="avatar" className={styles["avatar"]} />
               <div className={styles["username"]}>{feedback.username}</div>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
 
       <hr className={styles["divider"]} />
 
@@ -90,13 +92,13 @@ const FeedbackList = () => {
           placeholder="Your name"
           value={username}
           className={styles["your-name"]}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={e => setUsername(e.target.value)}
         />
         <textarea
           placeholder="Write your feedback here..."
           value={newFeedback}
           className={styles["your-feedback"]}
-          onChange={(e) => setNewFeedback(e.target.value)}
+          onChange={e => setNewFeedback(e.target.value)}
         />
         <button onClick={handleAddFeedback} className={styles["add-feedback"]}>
           Add Feedback

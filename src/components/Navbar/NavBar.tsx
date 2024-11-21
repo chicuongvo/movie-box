@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../../assets/favicon.png";
+import { useUser } from "../../contexts/userContext";
 
 const navItems = [
   {
@@ -17,6 +18,7 @@ const navItems = [
 ];
 
 export default function NavBar() {
+  const { username } = useUser();
   return (
     <div className="nav-wrapper">
       <nav className="nav container">
@@ -32,9 +34,13 @@ export default function NavBar() {
             </li>
           ))}
         </ul>
-        <Link className="btn btn--primary" to="login">
-          Log in
-        </Link>
+        {username ? (
+          <p>{username}</p>
+        ) : (
+          <Link className="btn btn--primary" to="login">
+            Log in
+          </Link>
+        )}
       </nav>
     </div>
   );

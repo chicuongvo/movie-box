@@ -9,6 +9,7 @@ import HomePage from "./HomePage/HomePage.tsx";
 import Login from "./Login/Login.tsx";
 import Checkout from "../components/CheckoutPage/CheckoutPage.tsx";
 import NavBar from "../components/Navbar/NavBar.tsx";
+import { UserProvider } from "../contexts/userContext.tsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -24,16 +25,18 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <ScrollToTop />
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="login" element={<Login />}></Route>
-          <Route path="movies" element={<Catalog />}></Route>
-          <Route path="movies/:id" element={<MovieDetail />}></Route>
-          <Route path="cart" element={<Cart />}></Route>
-          <Route path="checkout" element={<Checkout />}></Route>
-        </Routes>
+        <UserProvider>
+          <ScrollToTop />
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<HomePage />}></Route>
+            <Route path="login" element={<Login />}></Route>
+            <Route path="movies" element={<Catalog />}></Route>
+            <Route path="movies/:id" element={<MovieDetail />}></Route>
+            <Route path="cart" element={<Cart />}></Route>
+            <Route path="checkout" element={<Checkout />}></Route>
+          </Routes>
+        </UserProvider>
       </BrowserRouter>
     </>
   );

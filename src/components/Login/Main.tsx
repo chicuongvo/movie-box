@@ -1,10 +1,12 @@
 import { useState } from "react";
 import styles from "../../pages/Login/Login.module.css";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../contexts/userContext";
 
 export default function Main() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { setUsername: handleLoginSuccess } = useUser();
   const navigate = useNavigate();
 
   async function handleLogin() {
@@ -21,7 +23,10 @@ export default function Main() {
       }
     );
     const data = await res.json();
-    if (data.message === "Logined") navigate("/");
+    if (data.message === "Logined") {
+      handleLoginSuccess(username);
+      navigate("/");
+    }
     console.log(data);
   }
 

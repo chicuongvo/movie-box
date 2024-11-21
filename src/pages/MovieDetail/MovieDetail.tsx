@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./MovieDetail.module.css";
 import { Rating } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { useUser } from "../../contexts/userContext";
 
 interface Movie {
   id: string;
@@ -20,6 +21,7 @@ const API_URL = "https://api.themoviedb.org/3/movie";
 const API_KEY = "62bc7d3ed0ea9939e69e5832789c8d7b";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const BACKDROP_URL = "https://image.tmdb.org/t/p/original";
+const MOVIE_PRICE = 29;
 const CAST_NUM_PER_PAGE = 4;
 
 export default function MovieDetail() {
@@ -27,7 +29,7 @@ export default function MovieDetail() {
   const [reviews, setReviews] = useState([]);
   const [trailer, setTrailer] = useState<{ key: string }>({ key: "" });
   const [casts, setCasts] = useState([]);
-
+  const { username } = useUser();
   const { id } = useParams();
   useEffect(
     function () {
@@ -86,10 +88,33 @@ export default function MovieDetail() {
     },
     [id]
   );
+
+  const handleAddToCart = async (id: string, name: string, price: number) => {
+    try {
+      const res = await fetch(
+        `https://backend-movie-app-0pio.onrender.com/movie/cart/${username}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id, name, price }),
+        }
+      );
+
+      if (res.ok) {
+        console.log("Added to cart");
+      } else {
+        console.error("Failed to add feedback");
+      }
+    } catch (error) {
+      console.error("Error adding feedback:", error);
+    }
+  };
   return (
     <div className={styles["movie-detail-wrapper"]}>
       <h1 className={styles.heading}>Movie Details</h1>
-      {movie && <MovieCard movie={movie} />}
+      {movie && <MovieCard movie={movie} handleAddToCart={handleAddToCart} />}
       <MovieTrailer trailer={trailer} />
       <ActorList actors={casts} />
       <Reviews reviews={reviews} />
@@ -97,7 +122,13 @@ export default function MovieDetail() {
   );
 }
 
-function MovieCard({ movie }: { movie: Movie }) {
+function MovieCard({
+  movie,
+  handleAddToCart,
+}: {
+  movie: Movie;
+  handleAddToCart: any;
+}) {
   return (
     <div className={styles.movie_card} id="tomb">
       <div className={styles.info_section}>
@@ -134,7 +165,14 @@ function MovieCard({ movie }: { movie: Movie }) {
             <span className={styles["movie-price"]}>$29.00</span>
           </li>
           <li>
-            <button className={styles["add-to-cart"]}>Add to cart</button>
+            <button
+              className={styles["add-to-cart"]}
+              onClick={() =>
+                handleAddToCart(movie.id, movie.original_title, MOVIE_PRICE)
+              }
+            >
+              Add to cart
+            </button>
           </li>
         </ul>
       </div>

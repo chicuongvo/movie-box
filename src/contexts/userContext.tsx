@@ -1,0 +1,26 @@
+import { createContext, useContext, useState } from "react";
+
+interface UserContextType {
+  username: string;
+  setUsername: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const UserContext = createContext<UserContextType | undefined>(undefined);
+
+import { ReactNode } from "react";
+
+function UserProvider({ children }: { children: ReactNode }) {
+  const [username, setUsername] = useState("");
+  return (
+    <UserContext.Provider value={{ username, setUsername }}>
+      {children}
+    </UserContext.Provider>
+  );
+}
+
+function useUser() {
+  const context = useContext(UserContext);
+  return context;
+}
+
+export { UserProvider, useUser };

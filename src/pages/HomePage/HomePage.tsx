@@ -1,3 +1,4 @@
+import { useUser } from "../../contexts/userContext";
 import FeedbackList from "./FeedbackList/FeedbackList";
 import styles from "./HomePage.module.css";
 import React, { useState, useEffect } from "react";
@@ -5,7 +6,8 @@ import { Link } from "react-router-dom";
 
 const API_URL = "https://api.themoviedb.org/3/movie/popular";
 const API_KEY = "62bc7d3ed0ea9939e69e5832789c8d7b";
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
+const IMG_URL = "https://image.tmdb.org/t/p/original";
+
 interface Movie {
   id: string;
   poster_path: string;
@@ -79,6 +81,7 @@ export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState("Top Rated");
   const [comingSoonMovie, setComingSoonMovie] = useState<Movie | null>(null);
   const [trailer, setTrailer] = useState<{ key: string }>({ key: "" });
+  const { username } = useUser();
 
   useEffect(function () {
     async function fetchMovies() {
@@ -166,7 +169,7 @@ export default function HomePage() {
     <div className={styles["wrapper"]}>
       <div className={styles["featured-movies-container"]}>
         <div className={styles["featured-movies-wrapper"]}>
-          {slides[currentSlide]?.map((movie) => (
+          {slides[currentSlide]?.map(movie => (
             <MovieCard1 key={movie.id} movie={movie} />
           ))}
         </div>
@@ -216,7 +219,7 @@ export default function HomePage() {
         </div>
 
         <div className={styles["list-movies-wrapper"]}>
-          {displayedMovies.map((movie) => (
+          {displayedMovies.map(movie => (
             <MovieCard2 key={movie.id} movie={movie} />
           ))}
         </div>
@@ -258,7 +261,7 @@ export default function HomePage() {
             placeholder="Your email address"
             className={styles["subscribe-form"]}
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             onKeyDown={handleKeyDown}
           />
           <button
