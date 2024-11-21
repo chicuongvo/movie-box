@@ -37,8 +37,8 @@ export default function MovieDetail() {
             `${API_URL}/${id}?api_key=${API_KEY}&append_to_response=credits`
           );
           const data = await res.json();
-          const { cast } = data.credits;
           setMovie(data);
+          const { cast } = data.credits;
           setCasts(cast.slice(0, CAST_NUM_PER_PAGE));
         } catch (error) {
           console.error(error);
@@ -78,7 +78,6 @@ export default function MovieDetail() {
           const data = await res.json();
           const reviews = data.results.slice(0, 4);
           setReviews(reviews);
-          console.log(reviews);
         } catch (error) {
           console.error(error);
         }
@@ -127,7 +126,7 @@ function MovieCard({ movie }: { movie: Movie }) {
           </p>
         </div>
         <div className={styles.movie_desc}>
-          <p className={styles.text}>{movie.overview}</p>
+          <p className={styles.text}>{movie.overview.slice(0, 250) + "..."}</p>
         </div>
 
         <ul className={styles.movie_social}>
@@ -135,7 +134,7 @@ function MovieCard({ movie }: { movie: Movie }) {
             <span className={styles["movie-price"]}>$29.00</span>
           </li>
           <li>
-            <button className="add-to-cart">Add to cart</button>
+            <button className={styles["add-to-cart"]}>Add to cart</button>
           </li>
         </ul>
       </div>
@@ -156,7 +155,7 @@ function MovieTrailer({ trailer }: { trailer: { key: string } }) {
       <iframe
         width="1080"
         height="520"
-        src={`https://www.youtube.com/embed/${trailer.key}`}
+        src={`https://www.youtube.com/embed/${trailer?.key ?? ""}`}
       />
     </div>
   );
@@ -249,7 +248,7 @@ function ReviewCard({
           <h3>{review.author}</h3>
           <span>{formatDate(review.created_at)}</span>
         </div>
-        <p>{review.content.slice(0, 150)} ...</p>
+        <p>{review.content.slice(0, 250)} ...</p>
       </div>
     </div>
   );
