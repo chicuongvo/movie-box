@@ -12,8 +12,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 55px; /* Kích thước nút lớn hơn */
-  height: 55px;
+  width: 50px;
+  height: 0px;
   background-color: white;
   color: black;
   border: none;
@@ -22,7 +22,7 @@
 }
 
 .removeButton svg {
-  width: 40px; /* Kích thước icon lớn hơn */
+  width: 40px;
   height: 40px;
 }
 
@@ -35,32 +35,6 @@
 .quantity,
 .total {
   vertical-align: middle;
-}
-
-.quantity {
-  display: flex; /* Dùng Flexbox */
-  justify-content: left; /* Căn giữa theo chiều ngang */
-  align-items: center; /* Căn giữa theo chiều dọc */
-  gap: 10px; /* Khoảng cách giữa các phần tử */
-  height: 75px; /* Đảm bảo chiều cao bằng với các ô khác */
-  margin-left: 0px;
-}
-.quantityButton {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 4px;
-  width: 20px;
-  height: 20px;
-  display: flex; /* Sử dụng flexbox để căn giữa */
-  justify-content: center; /* Căn giữa theo chiều ngang */
-  align-items: center; /* Căn giữa theo chiều dọc */
-}
-
-.quantityButton:hover {
-  background-color: #c82333;
 }
 
 td,

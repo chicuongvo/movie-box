@@ -6,24 +6,11 @@ interface CartItemProps {
     id: number;
     name: string;
     price: number;
-    quantity: number;
   };
-  updateQuantity: (id: number, quantity: number) => void;
   removeItem: (id: number) => void;
 }
 
-const CartItem: React.FC<CartItemProps> = ({
-  product,
-  updateQuantity,
-  removeItem,
-}) => {
-  const handleQuantityChange = (increment: number) => {
-    const newQuantity = product.quantity + increment;
-    if (newQuantity >= 1) {
-      updateQuantity(product.id, newQuantity);
-    }
-  };
-
+const CartItem: React.FC<CartItemProps> = ({ product, removeItem }) => {
   return (
     <tr className={styles.cartItem}>
       <td className={styles.remove}>
@@ -49,24 +36,8 @@ const CartItem: React.FC<CartItemProps> = ({
       </td>
       <td className={styles.product}>{product.name}</td>
       <td className={styles.price}>${product.price.toFixed(2)}</td>
-      <td className={styles.quantity}>
-        <button
-          onClick={() => handleQuantityChange(-1)}
-          className={styles.quantityButton}
-        >
-          -
-        </button>
-        <span>{product.quantity}</span>
-        <button
-          onClick={() => handleQuantityChange(1)}
-          className={styles.quantityButton}
-        >
-          +
-        </button>
-      </td>
-      <td className={styles.total}>
-        ${(product.price * product.quantity).toFixed(2)}
-      </td>
+      <td className={styles.quantity}>1</td>
+      <td className={styles.total}>${product.price.toFixed(2)}</td>
     </tr>
   );
 };

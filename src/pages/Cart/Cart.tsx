@@ -7,7 +7,6 @@ interface Product {
   id: number;
   name: string;
   price: number;
-  quantity: number;
 }
 
 const Cart: React.FC = () => {
@@ -16,9 +15,8 @@ const Cart: React.FC = () => {
       id: 1,
       name: "Ant-Man and the Wasp",
       price: 29.0,
-      quantity: 1,
     },
-    { id: 2, name: "Avengers: Infinity War", price: 29.0, quantity: 1 },
+    { id: 2, name: "Avengers: Infinity War", price: 29.0 },
   ]);
 
   const [couponCode, setCouponCode] = useState("");
@@ -31,18 +29,9 @@ const Cart: React.FC = () => {
     { code: "FREESHIP", discount: 5 },
   ];
 
-  const subtotal = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  const subtotal = cart.reduce((total, item) => total + item.price, 0);
 
   const total = subtotal + 5 - discount;
-
-  const updateQuantity = (id: number, quantity: number) => {
-    setCart((prevCart) =>
-      prevCart.map((item) => (item.id === id ? { ...item, quantity } : item))
-    );
-  };
 
   const removeItem = (id: number) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
@@ -64,6 +53,7 @@ const Cart: React.FC = () => {
       <div className={styles.cartTableSection}>
         <table className={styles.cartTable}>
           <colgroup>
+            <col className={styles.colRemoveButton} />
             <col className={styles.colProduct} />
             <col className={styles.colPrice} />
             <col className={styles.colQuantity} />
@@ -83,7 +73,6 @@ const Cart: React.FC = () => {
               <CartItem
                 key={product.id}
                 product={product}
-                updateQuantity={updateQuantity}
                 removeItem={removeItem}
               />
             ))}

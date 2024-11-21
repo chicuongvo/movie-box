@@ -323,17 +323,24 @@ const Checkout: React.FC = () => {
                 name="payment"
                 className={styles.radioInput}
               />
-              <span className={styles.paymentLabel}>COD</span>
-              <p className={styles.paymentDescription}></p>
+              <span className={styles.paymentLabel}>
+                COD (Cash on Delivery)
+              </span>
             </label>
+            <p className={styles.paymentDescription}>
+              Pay directly when the product is delivered.
+            </p>
             <label className={styles.paymentOption}>
               <input
                 type="radio"
                 name="payment"
                 className={styles.radioInput}
               />
-              <span className={styles.paymentLabel}>Banking</span>
+              <span className={styles.paymentLabel}>Banking Transfer</span>
             </label>
+            <p className={styles.paymentDescription}>
+              Click here to get the QR code.
+            </p>
           </div>
         </div>
       </div>
