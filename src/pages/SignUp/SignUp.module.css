@@ -1,21 +1,21 @@
-.section-login {
+.section-signup {
   color: #333;
   text-transform: uppercase;
   padding: 96px 32px;
 }
 
-.title-login {
+.title-signup {
   color: #e80606;
 }
 
-.section-login-form {
+.section-signup-form {
   display: flex;
   color: #333;
   width: 100%;
   padding: 96px 32px;
 }
 
-.login-panel{
+.signup-panel{
   width: 40%;
   padding: 40px 30px;
   border-radius: 10px;
