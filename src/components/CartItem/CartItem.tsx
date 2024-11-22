@@ -3,14 +3,15 @@ import styles from "./CartItem.module.css";
 
 interface CartItemProps {
   product: {
-    id: number;
+    id: string; // ID từ API là string
     name: string;
-    price: number;
+    price: string; // Giá từ API là string
   };
-  removeItem: (id: number) => void;
+  removeItem: (id: string) => void;
 }
 
 const CartItem: React.FC<CartItemProps> = ({ product, removeItem }) => {
+  const price = parseFloat(product.price); // Chuyển giá sang số
   return (
     <tr className={styles.cartItem}>
       <td className={styles.remove}>
@@ -35,9 +36,9 @@ const CartItem: React.FC<CartItemProps> = ({ product, removeItem }) => {
         </button>
       </td>
       <td className={styles.product}>{product.name}</td>
-      <td className={styles.price}>${product.price.toFixed(2)}</td>
+      <td className={styles.price}>${price.toFixed(2)}</td>
       <td className={styles.quantity}>1</td>
-      <td className={styles.total}>${product.price.toFixed(2)}</td>
+      <td className={styles.total}>${price.toFixed(2)}</td>
     </tr>
   );
 };
