@@ -127,7 +127,7 @@ function MovieCard({
   handleAddToCart,
 }: {
   movie: Movie;
-  handleAddToCart: any;
+  handleAddToCart: (id: string, name: string, price: number) => Promise<void>;
 }) {
   return (
     <div className={styles.movie_card} id="tomb">

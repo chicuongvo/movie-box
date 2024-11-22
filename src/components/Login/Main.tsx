@@ -6,7 +6,9 @@ import { useUser } from "../../contexts/userContext";
 export default function Main() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setUsername: handleLoginSuccess } = useUser();
+  const userContext = useUser();
+
+  const { setUsername: handleLoginSuccess } = userContext;
   const navigate = useNavigate();
 
   async function handleLogin() {
