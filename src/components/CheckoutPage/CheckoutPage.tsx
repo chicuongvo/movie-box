@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./CheckoutPage.module.css";
 import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import OrderSuccessIcon from "../../assets/order-success-icon.png";
+import { useUser } from "../../contexts/userContext.tsx";
+import { useCart } from "../../contexts/cartContext";
+
+const API_URL = "https://backend-movie-app-0pio.onrender.com";
+
+interface Product {
+  name: string;
+  id: string;
+  price: string;
+  _id: string;
+}
 interface BillingDetails {
   firstName: string;
   lastName: string;
@@ -71,6 +82,53 @@ const Checkout: React.FC = () => {
       });
     }
   };
+  const [showPopup, setShowPopup] = useState(false);
+  const [showQrPopup, setShowQrPopup] = useState(false);
+  const handlePlaceOrder = () => {
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
+  const handleShowQrPopup = () => {
+    setShowQrPopup(true);
+  };
+
+  const handleCloseQrPopup = () => {
+    setShowQrPopup(false);
+  };
+
+  const [cart, setCart] = useState<Product[]>([]);
+  const { username } = useUser() || {};
+  const { discount, appliedCoupon } = useCart();
+
+  useEffect(() => {
+    async function fetchCart() {
+      if (!username) return;
+      try {
+        const res = await fetch(`${API_URL}/user/${username}`);
+        if (!res.ok) {
+          throw new Error(`Failed to fetch: ${res.status}`);
+        }
+        const data = await res.json();
+        setCart(
+          Array.isArray(data.data.shoppingCart) ? data.data.shoppingCart : []
+        );
+      } catch (error) {
+        console.error("Error fetching cart:", error);
+      }
+    }
+
+    fetchCart();
+  }, [username]);
+
+  const subtotal = cart.reduce(
+    (total, item) => total + parseFloat(item.price),
+    0
+  );
+
   return (
     <div className={styles.checkoutContainer}>
       {/* Billing Details Section */}
@@ -290,24 +348,43 @@ const Checkout: React.FC = () => {
       <div className={styles.section}>
         <h2>YOUR ORDER</h2>
         <table className={styles.orderTable}>
+          <colgroup>
+            <col style={{ width: "85%" }} />
+            <col style={{ width: "15%" }} />
+          </colgroup>
           <thead>
             <tr>
               <th>Product</th>
-              <th>Price</th>
+              <th></th>
             </tr>
           </thead>
+
           <tbody>
+            {cart.map((product) => (
+              <tr key={product.id}>
+                <td>{product.name}</td>
+                <td>${parseFloat(product.price).toFixed(2)}</td>
+              </tr>
+            ))}
             <tr>
-              <td>Subtotal</td>
-              <td>${total!.toFixed(2)}</td>
+              <td style={{ fontWeight: "bold" }}>Subtotal</td>
+              <td style={{ fontWeight: "bold" }}>${subtotal!.toFixed(2)}</td>
+            </tr>
+            {appliedCoupon && (
+              <tr>
+                <td style={{ fontWeight: "bold" }}>
+                  Discount ({appliedCoupon}):
+                </td>
+                <td style={{ fontWeight: "bold" }}>-${discount.toFixed(2)}</td>
+              </tr>
+            )}
+            <tr>
+              <td style={{ fontWeight: "bold" }}>Shipping</td>
+              <td style={{ fontWeight: "bold" }}>$5.00</td>
             </tr>
             <tr>
-              <td>Shipping</td>
-              <td>$5.00</td>
-            </tr>
-            <tr>
-              <td>Total</td>
-              <td>${total!.toFixed(2)}</td>
+              <td style={{ fontWeight: "bold" }}>Total</td>
+              <td style={{ fontWeight: "bold" }}>${total!.toFixed(2)}</td>
             </tr>
           </tbody>
         </table>
@@ -338,7 +415,14 @@ const Checkout: React.FC = () => {
               />
               <span className={styles.paymentLabel}>Banking Transfer</span>
             </label>
-            <p className={styles.paymentDescription}>
+            <p
+              className={styles.qrDescription}
+              onClick={handleShowQrPopup}
+              style={{
+                cursor: "pointer",
+                textDecoration: "underline",
+              }}
+            >
               Click here to get the QR code.
             </p>
           </div>
@@ -346,8 +430,62 @@ const Checkout: React.FC = () => {
       </div>
 
       <div className={styles.placeOrderButtonSection}>
-        <button className={styles.placeOrderButton}>Place an order</button>
+        <button className={styles.placeOrderButton} onClick={handlePlaceOrder}>
+          Place an order
+        </button>
       </div>
+      {showPopup && (
+        <div className={styles.popupOverlay}>
+          <div className={styles.popup}>
+            <div className={styles.popupIcon}>
+              <img src={OrderSuccessIcon} alt="Order Success" />
+            </div>
+            <div className={styles.popupHeader}>
+              <h3>Thank you for ordering!</h3>
+            </div>
+            <div className={styles.popupBody}>
+              <p>Your order has been successfully placed!</p>
+              <p>You will shortly receive a confirmation email.</p>
+            </div>
+            <div className={styles.popupFooter}>
+              <button
+                className={styles.continueShoppingButton}
+                onClick={handleClosePopup}
+              >
+                Continue Shopping
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showQrPopup && (
+        <div className={styles.popupOverlay}>
+          <div className={styles.popup}>
+            <div className={styles.popupHeader}>
+              <h3>Scan this QR Code</h3>
+            </div>
+            <div className={styles.popupBody}>
+              <img
+                src={`https://img.vietqr.io/image/vcb-paymentformoviebox-compact2.jpg?amount=${
+                  total * 25417
+                }&addInfo=test&accountName=Movie%20Box  %20
+`}
+                alt="QR Code"
+                className={styles.qrImage}
+              />
+            </div>
+            <div className={styles.popupFooter}>
+              <button
+                className={styles.continueShoppingButton}
+                onClick={handleCloseQrPopup}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
