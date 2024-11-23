@@ -2,16 +2,16 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
+import NavBar from "../components/Navbar/NavBar.tsx";
 import MovieDetail from "./MovieDetail/MovieDetail.tsx";
 import Catalog from "./Catalog/Catalog.tsx";
 import Cart from "./Cart/Cart.tsx";
 import HomePage from "./HomePage/HomePage.tsx";
 import Login from "./Login/Login.tsx";
-import Checkout from "../components/CheckoutPage/CheckoutPage.tsx";
-import NavBar from "../components/Navbar/NavBar.tsx";
-import { UserProvider } from "../contexts/userContext.tsx";
-import { CartProvider } from "../contexts/cartContext";
+import Checkout from "./CheckoutPage/CheckoutPage.tsx";
 import SignUp from "./SignUp/SignUp.tsx";
+import { UserProvider } from "../contexts/userContext";
+import { CartProvider } from "../contexts/cartContext";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
