@@ -9,15 +9,17 @@ export default function Main() {
 
   async function handlesignup() {
     console.log(username, password);
-    const res = await fetch("https://backend-movie-app-0pio.onrender.com/user", {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        "username": username,
-        "password": password,
-      },
-    });
+    const res = await fetch(
+      "https://backend-movie-app-0pio.onrender.com/user",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      }
+    );
     const data = await res.json();
     // if (data.message === "Logined") navigate("/");
     console.log(data);
@@ -25,10 +27,17 @@ export default function Main() {
 
   return (
     <>
-      <section className={`${styles["section-signup-form"]} ${styles["justify-content-center"]}`}>
-        <div className={`${styles["signup-panel"]} ${styles["justify-content-center"]} ${styles["text-center"]}`}>
+      <section
+        className={`${styles["section-signup-form"]} ${styles["justify-content-center"]}`}
+      >
+        <div
+          className={`${styles["signup-panel"]} ${styles["justify-content-center"]} ${styles["text-center"]}`}
+        >
           <h1 className="mb--large">Sign Up</h1>
-          <form onSubmit={e => e.preventDefault()} className={styles["justify-content-center"]}>
+          <form
+            onSubmit={e => e.preventDefault()}
+            className={styles["justify-content-center"]}
+          >
             <div className={`${styles["mb-medium"]}`}>
               <input
                 type="text"
