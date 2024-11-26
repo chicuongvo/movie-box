@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../../assets/favicon.png";
 import { useUser } from "../../contexts/userContext";
+import styles from "./NavBar.module.css";
 
 const navItems = [
   {
@@ -17,8 +18,22 @@ const navItems = [
   },
 ];
 
+const getLocalUser = () => {
+  return localStorage.getItem("username");
+};
+
+const handleLogOutClick = (
+  setUsername: React.Dispatch<React.SetStateAction<string>>
+) => {
+  localStorage.setItem("username", "");
+  setUsername("");
+};
+
 export default function NavBar() {
-  const { username } = useUser();
+  const { setUsername } = useUser();
+  let { username } = useUser();
+  username ||= getLocalUser() || "";
+
   return (
     <div className="nav-wrapper">
       <nav className="nav container">
@@ -35,7 +50,15 @@ export default function NavBar() {
           ))}
         </ul>
         {username ? (
-          <p>{username}</p>
+          <div className={styles["user-container"]}>
+            <p className={styles["username"]}>👤 {username}</p>
+            <button
+              className={styles["btn"]}
+              onClick={() => handleLogOutClick(setUsername)}
+            >
+              Log out &rarr;
+            </button>
+          </div>
         ) : (
           <Link className="btn btn--primary" to="login">
             Log in
