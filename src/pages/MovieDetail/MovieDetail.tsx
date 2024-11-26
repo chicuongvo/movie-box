@@ -34,8 +34,6 @@ export default function MovieDetail() {
   const { username } = useUser();
   const { id } = useParams();
 
-  // const notify = () => toast("Wow so easy!");
-
   useEffect(
     function () {
       async function fetchMovie(id: number) {
