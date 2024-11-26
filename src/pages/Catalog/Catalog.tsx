@@ -34,6 +34,13 @@ export default function Catalog() {
 
   useEffect(
     function () {
+      window.scrollTo(0, 0);
+    },
+    [page]
+  );
+
+  useEffect(
+    function () {
       async function fetchMovies() {
         try {
           const res = await fetch(`${API_URL}?api_key=${API_KEY}&page=${page}`);
