@@ -6,6 +6,10 @@
   transition: all 0.3s;
 }
 
+.btn-sign-in {
+  padding: 7px 16px !important;
+}
+
 .btn:hover {
   color: #fff;
   background-color: #333;

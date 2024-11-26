@@ -1,6 +1,7 @@
 import { useState } from "react";
-
+import { toast } from "react-toastify";
 import styles from "./SignUp.module.css";
+import { useNavigate } from "react-router-dom";
 
 function LandingContainer({ children }: { children: React.ReactNode }) {
   return <div className="container">{children}</div>;
@@ -11,6 +12,7 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   async function handlesignup() {
     console.log(username, password);
@@ -26,7 +28,29 @@ export default function SignUp() {
       }
     );
     const data = await res.json();
-    console.log(data);
+    if (data.message === "Register succesfully") {
+      toast.success(data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      navigate("/login");
+    } else
+      toast.error(data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
   }
   return (
     <>
@@ -37,7 +61,7 @@ export default function SignUp() {
           <div
             className={`${styles["signup-panel"]} ${styles["justify-content-center"]} ${styles["text-center"]}`}
           >
-            <h1 className="mb--large">Sign Up</h1>
+            <h1 className="mb--large">SIGN UP</h1>
             <form
               onSubmit={e => e.preventDefault()}
               className={styles["justify-content-center"]}

@@ -1,6 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 import NavBar from "../components/Navbar/NavBar.tsx";
 import MovieDetail from "./MovieDetail/MovieDetail.tsx";
@@ -43,6 +46,7 @@ function App() {
           </CartProvider>
         </UserProvider>
       </BrowserRouter>
+      <ToastContainer />
     </>
   );
 }

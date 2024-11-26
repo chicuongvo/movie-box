@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import styles from "./Login.module.css";
 import { useUser } from "../../contexts/userContext";
@@ -17,7 +18,6 @@ export default function Login() {
   const navigate = useNavigate();
 
   async function handleLogin() {
-    console.log(username, password);
     const res = await fetch(
       "https://backend-movie-app-0pio.onrender.com/authen",
       {
@@ -31,11 +31,31 @@ export default function Login() {
     );
     const data = await res.json();
     if (data.message === "Logined") {
+      toast.success("Login successfully!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       localStorage.setItem("username", username);
       handleLoginSuccess(username);
       navigate("/");
+    } else {
+      toast.error("Wrong username or password", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
-    console.log(data);
   }
   return (
     <>
