@@ -1,6 +1,8 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Logo from "../../assets/favicon.png";
 import { useUser } from "../../contexts/userContext";
+import styles from "./NavBar.module.css";
+import type { NavigateFunction } from "react-router-dom";
 
 const navItems = [
   {
@@ -17,8 +19,26 @@ const navItems = [
   },
 ];
 
+const getLocalUser = () => {
+  return localStorage.getItem("username");
+};
+
+const handleLogOutClick = (
+  setUsername: React.Dispatch<React.SetStateAction<string>>,
+  navigate: NavigateFunction
+) => {
+  localStorage.setItem("username", "");
+  setUsername("");
+  navigate("login");
+};
+
 export default function NavBar() {
-  const { username } = useUser();
+  const { setUsername } = useUser();
+  let { username } = useUser();
+  username ||= getLocalUser() || "";
+
+  const navigate = useNavigate();
+
   return (
     <div className="nav-wrapper">
       <nav className="nav container">
@@ -35,9 +55,20 @@ export default function NavBar() {
           ))}
         </ul>
         {username ? (
-          <p>{username}</p>
+          <div className={styles["user-container"]}>
+            <p className={styles["username"]}>👤 {username}</p>
+            <button
+              className={styles["btn"]}
+              onClick={() => handleLogOutClick(setUsername, navigate)}
+            >
+              Log out &rarr;
+            </button>
+          </div>
         ) : (
-          <Link className="btn btn--primary" to="login">
+          <Link
+            className={`btn btn--primary ${styles["btn-sign-in"]}`}
+            to="login"
+          >
             Log in
           </Link>
         )}

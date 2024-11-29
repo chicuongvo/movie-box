@@ -12,15 +12,15 @@
   display: flex;
   color: #333;
   width: 100%;
-  padding: 96px 32px;
+  padding: 64px 32px;
 }
 
-.signup-panel{
+.signup-panel {
   width: 40%;
   padding: 40px 30px;
   border-radius: 10px;
   background-color: #ffffff;
-  box-shadow: 0 0 30px 20px rgba(0, 0, 0, 0.20);
+  box-shadow: 0 0 30px 20px rgba(0, 0, 0, 0.2);
 }
 
 .btn_sign_in[type="submit"] {
@@ -76,5 +76,5 @@
   border: 1px solid rgba(246, 246, 246, 0.8);
   border-radius: 6px;
   -webkit-appearance: none;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }

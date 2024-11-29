@@ -1,4 +1,3 @@
-import { useUser } from "../../contexts/userContext";
 import FeedbackList from "./FeedbackList/FeedbackList";
 import styles from "./HomePage.module.css";
 import React, { useState, useEffect } from "react";
@@ -81,7 +80,6 @@ export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState("Top Rated");
   const [comingSoonMovie, setComingSoonMovie] = useState<Movie | null>(null);
   const [trailer, setTrailer] = useState<{ key: string }>({ key: "" });
-  const { username } = useUser();
 
   useEffect(function () {
     async function fetchMovies() {

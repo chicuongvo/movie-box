@@ -90,7 +90,7 @@
       padding-bottom: 20px;
       display: flex;
       padding: 0 25px;
-      align-items: center;
+      align-items: flex-end;
       list-style: none;
       li {
         display: inline-block;
@@ -148,6 +148,7 @@
   flex-direction: column;
   align-items: center;
   gap: 96px;
+  padding: 48px 0;
 }
 
 .movie-detail-wrapper h2 {
@@ -230,4 +231,13 @@
 .add-to-cart {
   padding: 8px 16px;
   background-color: var(--color--primary);
+}
+
+.added {
+  padding: 12px 24px;
+  color: #333;
+  background-color: #e5e6e6;
+  border: 1px solid #3333332d;
+  border-radius: 999px;
+  text-transform: uppercase;
 }

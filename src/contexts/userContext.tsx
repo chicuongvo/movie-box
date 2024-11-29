@@ -10,7 +10,9 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 import { ReactNode } from "react";
 
 function UserProvider({ children }: { children: ReactNode }) {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(
+    () => localStorage.getItem("username") || ""
+  );
   return (
     <UserContext.Provider value={{ username, setUsername }}>
       {children}
@@ -20,6 +22,9 @@ function UserProvider({ children }: { children: ReactNode }) {
 
 function useUser() {
   const context = useContext(UserContext);
+  if (!context) {
+    throw new Error("useUser must be used within a UserProvider");
+  }
   return context;
 }
 

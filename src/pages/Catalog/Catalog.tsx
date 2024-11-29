@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./Catalog.module.css";
 import { Link } from "react-router-dom";
 import mockPoster from "../../assets/poster.jpg";
-import NavBar from "../../components/Navbar/NavBar";
 import { Pagination } from "@mui/material";
 
 const API_URL = "https://api.themoviedb.org/3/movie/now_playing";
@@ -32,6 +31,13 @@ export default function Catalog() {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
+
+  useEffect(
+    function () {
+      window.scrollTo(0, 0);
+    },
+    [page]
+  );
 
   useEffect(
     function () {
@@ -72,7 +78,7 @@ export default function Catalog() {
     [searchQuery, page]
   );
 
-  const handlePageChange = (_, value: number) => {
+  const handlePageChange = (_: ChangeEvent<unknown>, value: number) => {
     setPage(value);
     console.log(value);
   };
@@ -95,7 +101,11 @@ export default function Catalog() {
   );
 }
 
-function SearchBar({ setSearchQuery }) {
+function SearchBar({
+  setSearchQuery,
+}: {
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const [input, setInput] = useState("");
   return (
     <form

@@ -19,6 +19,7 @@ interface Movie {
 
 const API_URL = "https://api.themoviedb.org/3/movie";
 const API_KEY = "62bc7d3ed0ea9939e69e5832789c8d7b";
+const USER_API_URL = "https://backend-movie-app-0pio.onrender.com/user";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const BACKDROP_URL = "https://image.tmdb.org/t/p/original";
 const MOVIE_PRICE = 29;
@@ -26,11 +27,13 @@ const CAST_NUM_PER_PAGE = 4;
 
 export default function MovieDetail() {
   const [movie, setMovie] = useState<Movie | null>(null);
+  const [isAdded, setIsAdded] = useState(false);
   const [reviews, setReviews] = useState([]);
   const [trailer, setTrailer] = useState<{ key: string }>({ key: "" });
   const [casts, setCasts] = useState([]);
   const { username } = useUser();
   const { id } = useParams();
+
   useEffect(
     function () {
       async function fetchMovie(id: number) {
@@ -89,6 +92,25 @@ export default function MovieDetail() {
     [id]
   );
 
+  useEffect(
+    function () {
+      async function fetchCart(username: string) {
+        try {
+          const res = await fetch(`${USER_API_URL}/${username}`);
+          const {
+            data: { shoppingCart },
+          } = await res.json();
+          const isInCart = shoppingCart.some((movie: any) => movie.id == id);
+          setIsAdded(isInCart);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      fetchCart(username);
+    },
+    [username, id]
+  );
+
   const handleAddToCart = async (id: string, name: string, price: number) => {
     try {
       const res = await fetch(
@@ -104,6 +126,7 @@ export default function MovieDetail() {
 
       if (res.ok) {
         console.log("Added to cart");
+        setIsAdded(true);
       } else {
         console.error("Failed to add feedback");
       }
@@ -113,8 +136,13 @@ export default function MovieDetail() {
   };
   return (
     <div className={styles["movie-detail-wrapper"]}>
-      <h1 className={styles.heading}>Movie Details</h1>
-      {movie && <MovieCard movie={movie} handleAddToCart={handleAddToCart} />}
+      {movie && (
+        <MovieCard
+          movie={movie}
+          handleAddToCart={handleAddToCart}
+          isAdded={isAdded}
+        />
+      )}
       <MovieTrailer trailer={trailer} />
       <ActorList actors={casts} />
       <Reviews reviews={reviews} />
@@ -125,63 +153,81 @@ export default function MovieDetail() {
 function MovieCard({
   movie,
   handleAddToCart,
+  isAdded,
 }: {
   movie: Movie;
-  handleAddToCart: any;
+  handleAddToCart: (id: string, name: string, price: number) => Promise<void>;
+  isAdded: boolean;
 }) {
   return (
-    <div className={styles.movie_card} id="tomb">
-      <div className={styles.info_section}>
-        <div className={styles.movie_header}>
-          <img
-            className={styles.locandina}
-            src={`${IMG_URL}${movie.poster_path}`}
-            alt="Tomb Raider"
-          />
-          <h1>{movie.original_title}</h1>
-          <div className={styles["movie-rating"]}>
-            <Rating
-              name="read-only"
-              value={movie.vote_average / 2}
-              readOnly
-              sx={{ mt: 1 }}
-            />
-            <span>{movie.vote_count} votes</span>
-          </div>
-          <br />
-          <span className={styles.minutes}>{movie.runtime} min</span>
-          <p className={styles.type}>
-            {movie.genres.map((genre: { id: number; name: string }) => (
-              <span key={genre.id}>{genre.name} - </span>
-            ))}
-          </p>
-        </div>
-        <div className={styles.movie_desc}>
-          <p className={styles.text}>{movie.overview.slice(0, 250) + "..."}</p>
-        </div>
+    <div>
+      <h1 className={styles.heading}>Movie Details</h1>
 
-        <ul className={styles.movie_social}>
-          <li>
-            <span className={styles["movie-price"]}>$29.00</span>
-          </li>
-          <li>
-            <button
-              className={styles["add-to-cart"]}
-              onClick={() =>
-                handleAddToCart(movie.id, movie.original_title, MOVIE_PRICE)
-              }
-            >
-              Add to cart
-            </button>
-          </li>
-        </ul>
+      <div className={styles.movie_card} id="tomb">
+        <div className={styles.info_section}>
+          <div className={styles.movie_header}>
+            <img
+              className={styles.locandina}
+              src={`${IMG_URL}${movie.poster_path}`}
+              alt="Tomb Raider"
+            />
+            <h1>{movie.original_title}</h1>
+            <div className={styles["movie-rating"]}>
+              <Rating
+                name="read-only"
+                value={movie.vote_average / 2}
+                readOnly
+                sx={{ mt: 1 }}
+              />
+              <span>{movie.vote_count} votes</span>
+            </div>
+            <br />
+            <span className={styles.minutes}>{movie.runtime} min</span>
+            <p className={styles.type}>
+              {movie.genres.map((genre: { id: number; name: string }) => (
+                <span key={genre.id}>{genre.name} - </span>
+              ))}
+            </p>
+          </div>
+          <div className={styles.movie_desc}>
+            <p className={styles.text}>
+              {movie.overview.slice(0, 250) + "..."}
+            </p>
+          </div>
+
+          <ul className={styles.movie_social}>
+            <li>
+              <span className={styles["movie-price"]}>$29.00</span>
+            </li>
+            <li>
+              <>
+                {isAdded ? (
+                  <p className={styles["added"]}>Added to cart</p>
+                ) : (
+                  <button
+                    className={styles["add-to-cart"]}
+                    onClick={() =>
+                      handleAddToCart(
+                        movie.id,
+                        movie.original_title,
+                        MOVIE_PRICE
+                      )
+                    }
+                  >
+                    Add to cart
+                  </button>
+                )}
+              </>
+            </li>
+          </ul>
+        </div>
+        <div
+          className={`${styles.blur_back} ${styles.card_back}`}
+          style={{
+            backgroundImage: `url(${BACKDROP_URL}${movie.backdrop_path})`,
+          }}
+        ></div>
       </div>
-      <div
-        className={`${styles.blur_back} ${styles.card_back}`}
-        style={{
-          backgroundImage: `url(${BACKDROP_URL}${movie.backdrop_path})`,
-        }}
-      ></div>
     </div>
   );
 }

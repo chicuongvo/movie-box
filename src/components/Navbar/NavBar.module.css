@@ -1,0 +1,26 @@
+.btn {
+  color: #333;
+  font-size: 12px;
+  padding: 8px 16px;
+  border: 1px solid #aaa;
+  transition: all 0.3s;
+}
+
+.btn-sign-in {
+  padding: 7px 16px !important;
+}
+
+.btn:hover {
+  color: #fff;
+  background-color: #333;
+}
+
+.username {
+  font-size: 18px;
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
