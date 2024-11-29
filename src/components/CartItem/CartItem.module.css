@@ -41,3 +41,12 @@ td,
 tr {
   height: 55px;
 }
+
+.productLink {
+  color: rgb(85, 26, 139);
+  text-decoration: none;
+}
+
+.productLink:hover {
+  text-decoration: underline;
+}

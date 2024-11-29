@@ -15,7 +15,7 @@ import Checkout from "./CheckoutPage/CheckoutPage.tsx";
 import SignUp from "./SignUp/SignUp.tsx";
 import { UserProvider } from "../contexts/userContext";
 import { CartProvider } from "../contexts/cartContext";
-
+import History from "./History/History.tsx";
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -42,6 +42,7 @@ function App() {
               <Route path="cart" element={<Cart />}></Route>
               <Route path="checkout" element={<Checkout />}></Route>
               <Route path="signup" element={<SignUp />}></Route>
+              <Route path="history" element={<History />}></Route>
             </Routes>
           </CartProvider>
         </UserProvider>

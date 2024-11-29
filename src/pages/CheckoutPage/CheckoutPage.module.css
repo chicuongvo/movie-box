@@ -425,3 +425,11 @@
 .continueShoppingButton:hover {
   background-color: #d32f2f;
 }
+.productLink {
+  color: rgb(85, 26, 139);
+  text-decoration: none;
+}
+
+.productLink:hover {
+  text-decoration: underline;
+}

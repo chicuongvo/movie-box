@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./CartItem.module.css";
 
 interface CartItemProps {
@@ -12,6 +13,7 @@ interface CartItemProps {
 
 const CartItem: React.FC<CartItemProps> = ({ product, removeItem }) => {
   const price = parseFloat(product.price); // Chuyển giá sang số
+
   return (
     <tr className={styles.cartItem}>
       <td className={styles.remove}>
@@ -35,7 +37,11 @@ const CartItem: React.FC<CartItemProps> = ({ product, removeItem }) => {
           </svg>
         </button>
       </td>
-      <td className={styles.product}>{product.name}</td>
+      <td className={styles.product}>
+        <Link to={`/movies/${product.id}`} className={styles.productLink}>
+          {product.name}
+        </Link>
+      </td>
       <td className={styles.price}>${price.toFixed(2)}</td>
       <td className={styles.quantity}>1</td>
       <td className={styles.total}>${price.toFixed(2)}</td>

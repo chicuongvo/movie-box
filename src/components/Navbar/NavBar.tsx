@@ -17,6 +17,11 @@ const navItems = [
     title: `Cart`,
     link: `cart`,
   },
+
+  {
+    title: `History`,
+    link: `history`,
+  },
 ];
 
 const getLocalUser = () => {
