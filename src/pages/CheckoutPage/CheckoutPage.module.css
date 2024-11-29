@@ -1,0 +1,436 @@
+.checkoutContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.infoSection {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.infoSection h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.link {
+  color: #d32f2f;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.section h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.formGrid input,
+.formGrid textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  color: black;
+}
+
+.formGrid textarea {
+  grid-column: span 2;
+  resize: none;
+}
+
+.orderTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.orderTable th,
+.orderTable td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.orderTable .colProduct {
+  width: 10%;
+}
+
+.orderTable th {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+  size: 10%;
+}
+
+.checkoutContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.section h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.paymentSection {
+  background-color: #f9f9f9;
+  height: 170px;
+}
+.checkoutContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.section h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.paymentOption {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.radioInput {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 3.5px solid #ccc;
+  border-radius: 50%;
+  background-color: #f9f9f9;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radioInput:checked {
+  background-color: #ccc;
+  border-color: #ccc;
+}
+
+.radioInput:checked::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+
+.paymentLabel {
+  font-weight: bold;
+  color: #d81b2a;
+  font-size: 17px;
+}
+
+.paymentDescription,
+.qrDescription {
+  font-size: 14.5px;
+  color: black;
+  margin-top: 5px;
+  margin-left: 36px;
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+
+.paymentIcons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.paymentIcons img {
+  width: 50px;
+  height: auto;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  background-color: white;
+}
+
+.checkboxLabel input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #f9f9f9;
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  border: 1px solid #ddd;
+}
+
+.checkboxLabel input:checked {
+  background-color: white;
+}
+
+.checkboxLabel input:checked::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.checkboxLabel:hover input {
+  border-color: gray;
+}
+
+.placeOrderButton {
+  background-color: #333333;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.placeOrderButton:hover {
+  background-color: #b6b7b6;
+}
+
+.placeOrderButtonSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: #fff;
+  border-radius: 16px;
+  width: 450px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+}
+
+.popupIcon img {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 16px;
+}
+
+.popupHeader h3 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #e53935; /* Màu đỏ chủ đạo */
+}
+
+.popupBody p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.popupFooter {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.viewOrderButton,
+.continueShoppingButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.viewOrderButton {
+  background-color: #e53935; /* Màu đỏ chủ đạo */
+  color: white;
+}
+
+.continueShoppingButton {
+  background-color: #e53935; /* Màu vàng nhấn */
+  color: white;
+}
+
+.viewOrderButton:hover {
+  background-color: #d32f2f;
+}
+
+.continueShoppingButton:hover {
+  background-color: #d32f2f;
+}
+
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: #fff;
+  border-radius: 8px;
+  width: 400px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.popupHeader h3 {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.popupBody img {
+  max-width: 100%;
+  height: auto;
+}
+
+.popupFooter {
+  margin-top: 16px;
+}
+
+.continueShoppingButton {
+  background-color: #e53935;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.continueShoppingButton:hover {
+  background-color: #d32f2f;
+}
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: #fff;
+  border-radius: 8px;
+  width: 400px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.popupHeader h3 {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.popupBody img {
+  max-width: 100%;
+  height: auto;
+}
+
+.popupFooter {
+  margin-top: 16px;
+}
+
+.continueShoppingButton {
+  background-color: #e53935;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.continueShoppingButton:hover {
+  background-color: #d32f2f;
+}
+
+.productLink {
+  color: #7445a1;
+  text-decoration: none;
+}
+
+.productLink:hover {
+  text-decoration: underline;
+}

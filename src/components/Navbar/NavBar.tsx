@@ -26,7 +26,7 @@ export default function NavBar() {
           <img src={Logo} alt="Movid App logo" className="logo" />
         </Link>
         <ul className="nav-links">
-          {navItems.map(item => (
+          {navItems.map((item) => (
             <li key={item.title}>
               <NavLink to={item.link} className="nav-link">
                 {item.title}

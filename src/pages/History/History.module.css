@@ -1,0 +1,97 @@
+.historyContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.section {
+  margin-bottom: 30px;
+}
+
+.section h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.formGrid input,
+.formGrid textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  color: black;
+}
+
+.formGrid textarea {
+  grid-column: span 2;
+  resize: none;
+}
+
+.orderTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.orderTable th,
+.orderTable td {
+  padding: 10px;
+
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.orderTable .colProduct {
+  width: 10%;
+}
+
+.orderTable th {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+  size: 10%;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.section h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.productLink {
+  color: #7445a1;
+  text-decoration: none;
+}
+
+.productLink:hover {
+  text-decoration: underline;
+}
+
+.orderSection {
+  margin-bottom: 50px;
+}
+
+.historyTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+}
