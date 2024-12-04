@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./History.module.css";
 import { Link } from "react-router-dom";
 
@@ -17,7 +17,7 @@ interface Order {
 
 const History: React.FC = () => {
   // Dữ liệu set cứng (mock data)
-  const [orders, setOrders] = useState<Order[]>([
+  const [orders] = useState<Order[]>([
     {
       _id: "order1",
       total: "99.99",
@@ -56,7 +56,7 @@ const History: React.FC = () => {
       {orders.length === 0 ? (
         <p>No orders found.</p>
       ) : (
-        orders.map((order) => (
+        orders.map(order => (
           <div key={order._id} className={styles.orderSection}>
             <h2>Order Date: {new Date(order.date).toLocaleDateString()}</h2>
             <table className={styles.orderTable}>
@@ -71,7 +71,7 @@ const History: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {order.products.map((product) => (
+                {order.products.map(product => (
                   <tr key={product.id}>
                     <td>
                       <Link
