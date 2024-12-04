@@ -148,7 +148,7 @@ function SearchBar({
   );
 }
 
-function MovieList({ movies }: { movies: Movie[] }) {
+export function MovieList({ movies }: { movies: Movie[] }) {
   return (
     <ul className={styles["list-movies"]}>
       {movies.map((movie: Movie) => (

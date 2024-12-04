@@ -3,6 +3,7 @@ import styles from "./MovieDetail.module.css";
 import { Rating } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useUser } from "../../contexts/userContext";
+import { MovieList } from "../Catalog/Catalog";
 
 interface Movie {
   id: string;
@@ -27,6 +28,7 @@ const CAST_NUM_PER_PAGE = 4;
 
 export default function MovieDetail() {
   const [movie, setMovie] = useState<Movie | null>(null);
+  const [similarMovies, setSimilarMovies] = useState<Movie[]>([]);
   const [isAdded, setIsAdded] = useState(false);
   const [reviews, setReviews] = useState([]);
   const [trailer, setTrailer] = useState<{ key: string }>({ key: "" });
@@ -94,6 +96,24 @@ export default function MovieDetail() {
 
   useEffect(
     function () {
+      async function fetchReviews(id: number) {
+        try {
+          const res = await fetch(
+            `${API_URL}/${id}/similar?api_key=${API_KEY}`
+          );
+          const { results } = await res.json();
+          setSimilarMovies(results.slice(0, 8));
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      fetchReviews(+id!);
+    },
+    [id]
+  );
+
+  useEffect(
+    function () {
       async function fetchCart(username: string) {
         try {
           const res = await fetch(`${USER_API_URL}/${username}`);
@@ -146,6 +166,7 @@ export default function MovieDetail() {
       <MovieTrailer trailer={trailer} />
       <ActorList actors={casts} />
       <Reviews reviews={reviews} />
+      <ListSimilar similarMovies={similarMovies} />
     </div>
   );
 }
@@ -334,6 +355,16 @@ function ReviewCard({
         </div>
         <p>{review.content.slice(0, 250)} ...</p>
       </div>
+    </div>
+  );
+}
+
+function ListSimilar({ similarMovies }: { similarMovies: Movie[] }) {
+  return (
+    <div>
+      <h2 className={styles["section"]}>Similar</h2>
+
+      <MovieList movies={similarMovies} />
     </div>
   );
 }
