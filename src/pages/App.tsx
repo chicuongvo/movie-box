@@ -13,6 +13,7 @@ import HomePage from "./HomePage/HomePage.tsx";
 import Login from "./Login/Login.tsx";
 import Checkout from "./CheckoutPage/CheckoutPage.tsx";
 import SignUp from "./SignUp/SignUp.tsx";
+import ProtectedRoute from "./ProtectedRoute.js";
 import { UserProvider } from "../contexts/userContext";
 import { CartProvider } from "../contexts/cartContext";
 import History from "./History/History.tsx";
@@ -44,6 +45,7 @@ function App() {
               <Route path="signup" element={<SignUp />}></Route>
               <Route path="history" element={<History />}></Route>
             </Routes>
+            <ProtectedRoute />
           </CartProvider>
         </UserProvider>
       </BrowserRouter>

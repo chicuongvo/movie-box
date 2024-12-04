@@ -13,6 +13,7 @@ function UserProvider({ children }: { children: ReactNode }) {
   const [username, setUsername] = useState(
     () => localStorage.getItem("username") || ""
   );
+
   return (
     <UserContext.Provider value={{ username, setUsername }}>
       {children}
