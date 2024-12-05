@@ -13,10 +13,11 @@ import HomePage from "./HomePage/HomePage.tsx";
 import Login from "./Login/Login.tsx";
 import Checkout from "./CheckoutPage/CheckoutPage.tsx";
 import SignUp from "./SignUp/SignUp.tsx";
-import ProtectedRoute from "./ProtectedRoute.js";
+import ProtectedRoute from "../components/ProtectedRoute.tsx";
 import { UserProvider } from "../contexts/userContext";
 import { CartProvider } from "../contexts/cartContext";
 import History from "./History/History.tsx";
+
 function ScrollToTop() {
   const { pathname } = useLocation();
 
