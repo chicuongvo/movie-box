@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "./ChangePassword.module.css";
 import { useState } from "react";
 
-// const URL = "https://backend-movie-app-0pio.onrender.com";
-const URL = "http://localhost:3002";
+const URL = "https://backend-movie-app-0pio.onrender.com";
+// const URL = "http://localhost:3002";
 
 export default function ChangPassword() {
   const queryParams = new URLSearchParams(location.search);

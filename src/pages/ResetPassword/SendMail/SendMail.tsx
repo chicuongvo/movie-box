@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "./SendMail.module.css";
 
-// const URL = "https://backend-movie-app-0pio.onrender.com";
-const URL = "http://localhost:3002";
+const URL = "https://backend-movie-app-0pio.onrender.com";
+// const URL = "http://localhost:3002";
 
 export default function SendMail() {
   const [username, setUsername] = useState("");
