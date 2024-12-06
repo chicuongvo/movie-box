@@ -17,6 +17,7 @@ import ProtectedRoute from "../components/ProtectedRoute.tsx";
 import { UserProvider } from "../contexts/userContext";
 import { CartProvider } from "../contexts/cartContext";
 import History from "./History/History.tsx";
+import AccountPage from "./AccountPage/AccountPage.tsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -45,6 +46,7 @@ function App() {
               <Route path="checkout" element={<Checkout />}></Route>
               <Route path="signup" element={<SignUp />}></Route>
               <Route path="history" element={<History />}></Route>
+              <Route path="account" element={<AccountPage />}></Route>
             </Routes>
             <ProtectedRoute />
           </CartProvider>
