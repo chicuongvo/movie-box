@@ -2,9 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
-
 import NavBar from "../components/Navbar/NavBar.tsx";
 import MovieDetail from "./MovieDetail/MovieDetail.tsx";
 import Catalog from "./Catalog/Catalog.tsx";
@@ -17,7 +15,8 @@ import ProtectedRoute from "../components/ProtectedRoute.tsx";
 import { UserProvider } from "../contexts/userContext";
 import { CartProvider } from "../contexts/cartContext";
 import History from "./History/History.tsx";
-
+import SendResetPasswordMail from "./ResetPassword/SendMail/SendMail.tsx";
+import ChangPassword from "./ResetPassword/ChangePassword/ChangePassword.tsx";
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -45,7 +44,16 @@ function App() {
               <Route path="checkout" element={<Checkout />}></Route>
               <Route path="signup" element={<SignUp />}></Route>
               <Route path="history" element={<History />}></Route>
+              <Route
+                path="reset-password/send-mail"
+                element={<SendResetPasswordMail />}
+              ></Route>
+              <Route
+                path="reset-password/change-password"
+                element={<ChangPassword />}
+              ></Route>
             </Routes>
+
             <ProtectedRoute />
           </CartProvider>
         </UserProvider>

@@ -1,0 +1,32 @@
+.footer-container {
+  width: 100vw;
+  padding: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: gray;
+  margin-top: auto;
+}
+
+.footer-container img {
+  width: 100px;
+}
+
+.display-column {
+  display: flex;
+  flex-direction: column;
+}
+.footer-logo {
+  display: flex;
+}
+
+.footer-container span {
+  font-size: 2rem;
+  font-family: "inter";
+}
+.footer-icon-container {
+  gap: 20px;
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+}
