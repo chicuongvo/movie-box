@@ -1,0 +1,121 @@
+.user-info-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  font-family: "Poppins", serif;
+  align-items: center;
+}
+
+.user-info {
+  width: 750px;
+  /* height: 540px; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.user-form-info {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  gap: 15px;
+  font-size: 16px;
+}
+
+.user-form-info input {
+  width: 551px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  height: 38px;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  font-family: "Poppins", serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin-top: 8px;
+}
+
+.user-form-info label {
+  font-weight: 500;
+}
+
+.user-basic-info {
+  height: 56px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 5px;
+  align-items: center;
+}
+
+.user-basic-info img {
+  width: 80px;
+  height: 80px;
+}
+
+.user-username {
+  font-size: 25px;
+  font-weight: 600;
+  color: #d81a24;
+}
+
+.user-email {
+  font-size: 13px;
+  font-style: italic;
+  color: #7d8184;
+}
+
+.confirm-button {
+  width: 100%;
+  height: 56px;
+  font-weight: 600;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  font-size: 14px;
+  color: #333;
+  height: 56px;
+  width: 150px;
+  border-radius: 4px;
+  transition: all 0.4s;
+  display: inline-block;
+  /* padding: 8px 16px; */
+}
+
+.cancel-btn:hover {
+  background-color: #e2e2e2;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.change-btn {
+  background-color: #db4444;
+  border: #db4444;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  width: 200px;
+  height: 56px;
+  transition: all 0.4s;
+  display: inline-block;
+}
+
+.change-btn:hover {
+  background-color: #e07575;
+  cursor: pointer;
+  transition: all 0.4s;
+}

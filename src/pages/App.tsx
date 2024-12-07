@@ -18,6 +18,7 @@ import History from "./History/History.tsx";
 import Admin from "./Admin/Admin.tsx";
 import SendMail from "./ResetPassword/SendMail/SendMail.tsx";
 import ChangePassword from "./ResetPassword/ChangePassword/ChangePassword.tsx";
+import AccountPage from "./AccountPage/AccountPage.tsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -55,6 +56,7 @@ function App() {
                 path="reset-password/change-password"
                 element={<ChangePassword />}
               ></Route>
+              <Route path="account" element={<AccountPage />}></Route>
             </Routes>
 
             <ProtectedRoute />
