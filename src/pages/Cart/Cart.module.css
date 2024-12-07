@@ -55,12 +55,12 @@
 
 .couponInput {
   background-color: #f9f9f9;
-  height: 40px; /* Đặt chiều cao giống với button */
-  padding: 0 12px; /* Padding bên trong input */
+  height: 40px;
+  padding: 0 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  box-sizing: border-box; /* Đảm bảo border không làm tăng chiều cao */
-  font-size: 16px; /* Đồng nhất kích thước chữ */
+  box-sizing: border-box;
+  font-size: 16px;
 }
 
 .couponButton,

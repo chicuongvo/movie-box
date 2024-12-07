@@ -17,7 +17,14 @@ interface Product {
 const Cart: React.FC = () => {
   const [cart, setCart] = useState<Product[]>([]);
   const { username } = useUser() || {};
-  const { discount, setDiscount, appliedCoupon, setAppliedCoupon } = useCart();
+  const {
+    discount,
+    setDiscount,
+    appliedCoupon,
+    setAppliedCoupon,
+    total,
+    setTotal,
+  } = useCart();
 
   const [couponCode, setCouponCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -103,7 +110,10 @@ const Cart: React.FC = () => {
     (total, item) => total + parseFloat(item.price),
     0
   );
-  const total = Math.max(0, subtotal + 5 - discount);
+
+  useEffect(() => {
+    setTotal(Math.max(0, subtotal + 5 - discount));
+  }, [subtotal, discount, setTotal]);
 
   const applyCoupon = () => {
     if (!couponCode.trim()) {

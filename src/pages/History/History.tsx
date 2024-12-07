@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./History.module.css";
 import { Link } from "react-router-dom";
-
+import { useUser } from "../../contexts/userContext.tsx";
+const API_URL = "https://backend-movie-app-0pio.onrender.com";
 interface Product {
   name: string;
   id: string;
@@ -9,6 +10,7 @@ interface Product {
 }
 
 interface Order {
+  id: string;
   _id: string;
   total: string;
   products: Product[];
@@ -16,38 +18,27 @@ interface Order {
 }
 
 const History: React.FC = () => {
-  // Dữ liệu set cứng (mock data)
-  const [orders] = useState<Order[]>([
-    {
-      _id: "order1",
-      total: "99.99",
-      date: "2024-11-25T12:00:00Z",
-      products: [
-        { name: "Movie 1", id: "1", price: "29.99" },
-        { name: "Movie 2", id: "2", price: "39.99" },
-        { name: "Movie 3", id: "3", price: "29.99" },
-      ],
-    },
-    {
-      _id: "order2",
-      total: "59.99",
-      date: "2024-11-23T15:00:00Z",
-      products: [
-        { name: "Movie 4", id: "4", price: "29.99" },
-        { name: "Movie 5", id: "5", price: "30.00" },
-      ],
-    },
-    {
-      _id: "order3",
-      total: "109.99",
-      date: "2024-11-21T09:30:00Z",
-      products: [
-        { name: "Movie 6", id: "6", price: "50.00" },
-        { name: "Movie 7", id: "7", price: "59.99" },
-      ],
-    },
-  ]);
+  const { username } = useUser() || {};
+  const [orders, setOrders] = useState<Order[]>([]);
 
+  useEffect(() => {
+    async function fetchOrder() {
+      if (!username) return;
+      try {
+        const res = await fetch(`${API_URL}/order/${username}`);
+        if (!res.ok) {
+          throw new Error(`Failed to fetch: ${res.status}`);
+        }
+        const data = await res.json();
+        console.log(data);
+        setOrders(data.data);
+      } catch (error) {
+        console.error("Error fetching order:", error);
+      }
+    }
+
+    fetchOrder();
+  }, [username]);
   return (
     <div className={styles.historyContainer}>
       <div className={styles.historyTitle}>
@@ -56,7 +47,7 @@ const History: React.FC = () => {
       {orders.length === 0 ? (
         <p>No orders found.</p>
       ) : (
-        orders.map(order => (
+        orders.map((order) => (
           <div key={order._id} className={styles.orderSection}>
             <h2>Order Date: {new Date(order.date).toLocaleDateString()}</h2>
             <table className={styles.orderTable}>
@@ -71,7 +62,7 @@ const History: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {order.products.map(product => (
+                {order.products.map((product) => (
                   <tr key={product.id}>
                     <td>
                       <Link
