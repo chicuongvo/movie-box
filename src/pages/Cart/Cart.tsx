@@ -52,10 +52,10 @@ const Cart: React.FC = () => {
     fetchCart();
   }, [username]);
 
-  async function removeItem(id: string) {
+  async function removeItem(_id: string) {
     if (!username) return;
 
-    const itemToRemove = cart.find((item) => item.id === id);
+    const itemToRemove = cart.find((item) => item._id === _id);
     if (!itemToRemove) {
       console.error("Item not found in cart");
       return;
@@ -68,9 +68,7 @@ const Cart: React.FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: itemToRemove.name,
-          id: itemToRemove.id,
-          price: itemToRemove.price,
+          _id: itemToRemove._id,
         }),
       });
 
@@ -81,7 +79,7 @@ const Cart: React.FC = () => {
       const data = await res.json();
       console.log("Item deleted:", data);
 
-      setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+      setCart((prevCart) => prevCart.filter((item) => item._id !== _id));
     } catch (error) {
       console.error("Error deleting item:", error);
     }

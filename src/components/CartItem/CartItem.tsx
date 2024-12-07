@@ -4,21 +4,22 @@ import styles from "./CartItem.module.css";
 
 interface CartItemProps {
   product: {
-    id: string; // ID từ API là string
+    id: string;
     name: string;
-    price: string; // Giá từ API là string
+    price: string;
+    _id: string;
   };
-  removeItem: (id: string) => void;
+  removeItem: (_id: string) => void;
 }
 
 const CartItem: React.FC<CartItemProps> = ({ product, removeItem }) => {
-  const price = parseFloat(product.price); // Chuyển giá sang số
+  const price = parseFloat(product.price);
 
   return (
     <tr className={styles.cartItem}>
       <td className={styles.remove}>
         <button
-          onClick={() => removeItem(product.id)}
+          onClick={() => removeItem(product._id)}
           className={styles.removeButton}
         >
           <svg
