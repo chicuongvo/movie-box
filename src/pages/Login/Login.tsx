@@ -30,6 +30,7 @@ export default function Login() {
       }
     );
     const data = await res.json();
+    console.log(data);
     if (data.message === "Logined") {
       toast.success("Login successfully!", {
         position: "top-center",
@@ -44,6 +45,17 @@ export default function Login() {
       localStorage.setItem("username", username);
       handleLoginSuccess(username);
       navigate("/");
+    } else if (data.status === "Banned") {
+      toast.error("This account has been banned! Please contact admin.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } else {
       toast.error("Wrong username or password", {
         position: "top-center",
