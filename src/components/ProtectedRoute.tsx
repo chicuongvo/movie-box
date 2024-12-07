@@ -7,11 +7,11 @@ function ProtectedRoute() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    console.log(pathname);
     if (
       pathname === "/login" ||
       pathname === "/signup" ||
-      pathname === "/reset-password/change-password" ||
-      pathname === "/reset-password/send-mail"
+      pathname.startsWith("/reset-password")
     )
       return;
     if (!username) navigate("/login");

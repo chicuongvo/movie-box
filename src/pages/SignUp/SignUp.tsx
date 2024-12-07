@@ -15,7 +15,7 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   async function handlesignup() {
-    console.log(username, password);
+    console.log(username, yourName, email, password);
     const res = await fetch(
       "https://backend-movie-app-0pio.onrender.com/user",
       {
@@ -24,7 +24,12 @@ export default function SignUp() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({
+          username,
+          password,
+          name: yourName,
+          gmail: email,
+        }),
       }
     );
     const data = await res.json();
