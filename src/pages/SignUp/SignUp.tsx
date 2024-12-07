@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import styles from "./SignUp.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function LandingContainer({ children }: { children: React.ReactNode }) {
   return <div className="container">{children}</div>;
@@ -118,7 +118,8 @@ export default function SignUp() {
               </div>
               <div>
                 <p>
-                  If you already have an account, <a href="/login">Sign In</a>
+                  If you already have an account,{" "}
+                  <Link to="/login">Sign In</Link>
                 </p>
               </div>
             </form>

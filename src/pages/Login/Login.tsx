@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import styles from "./Login.module.css";
@@ -100,6 +100,12 @@ export default function Login() {
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                 />
+              </div>
+              <div className={styles["pwd-forgot"]}>
+                <p>
+                  Forgot your password?{" "}
+                  <Link to="/reset-password/send-mail">Reset here</Link>
+                </p>
               </div>
               <div
                 className={`${styles["text-center"]} ${styles["mb-medium"]}`}
