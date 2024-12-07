@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import styles from "./Admin.module.css";
 
-function PopUp(props) {
+interface PopUpProps {
+  trigger: boolean;
+  children: React.ReactNode;
+}
+
+function PopUp(props: PopUpProps) {
   return props.trigger ? (
     <div className={`${styles["popup"]}`}>
       <div className={`${styles["popup-inner"]}`}>{props.children}</div>
@@ -11,8 +16,16 @@ function PopUp(props) {
   );
 }
 
+interface User {
+  username: string;
+  gmail: string;
+  address: string;
+  phone: string;
+  isBanned: boolean;
+}
+
 function Admin() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [popupEdit, setPopupEdit] = useState(false);
   const [popupBan, setPopupBan] = useState(false);
   const [username, setUsername] = useState("");
@@ -39,7 +52,7 @@ function Admin() {
       }
     );
     const data = await res.json();
-    return data.data.userList.filter(user => !user.isBanned);
+    return data.data.userList.filter((user: User) => !user.isBanned);
   }
 
   async function handleBan() {
