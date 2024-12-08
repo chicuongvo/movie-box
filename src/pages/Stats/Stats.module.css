@@ -17,6 +17,11 @@
   text-align: center;
 }
 
+.chart-label {
+  margin-bottom: 48px;
+  text-align: center;
+}
+
 .top-5-movs {
   text-align: center;
 }
@@ -24,6 +29,7 @@
 .stats-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 36px;
   padding: 32px;
 }
