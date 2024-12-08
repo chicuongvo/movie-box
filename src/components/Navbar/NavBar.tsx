@@ -51,7 +51,7 @@ export default function NavBar() {
           <img src={Logo} alt="Movid App logo" className="logo" />
         </Link>
         <ul className="nav-links">
-          {navItems.map((item) => (
+          {navItems.map(item => (
             <li key={item.title}>
               <NavLink to={item.link} className="nav-link">
                 {item.title}
@@ -60,15 +60,20 @@ export default function NavBar() {
           ))}
         </ul>
         {username ? (
-          <div className={styles["user-container"]}>
-            <p className={styles["username"]}>👤 {username}</p>
-            <button
-              className={styles["btn"]}
-              onClick={() => handleLogOutClick(setUsername, navigate)}
-            >
-              Log out &rarr;
-            </button>
-          </div>
+          <Link to="/account">
+            <div className={styles["user-container"]}>
+              <p className={styles["username"]}>👤 {username}</p>
+              <button
+                className={styles["btn"]}
+                onClick={e => {
+                  e.preventDefault();
+                  handleLogOutClick(setUsername, navigate);
+                }}
+              >
+                Log out &rarr;
+              </button>
+            </div>
+          </Link>
         ) : (
           <Link
             className={`btn btn--primary ${styles["btn-sign-in"]}`}
