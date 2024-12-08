@@ -19,6 +19,7 @@ import Admin from "./Admin/Admin.tsx";
 import SendMail from "./ResetPassword/SendMail/SendMail.tsx";
 import ChangePassword from "./ResetPassword/ChangePassword/ChangePassword.tsx";
 import AccountPage from "./AccountPage/AccountPage.tsx";
+import Stats from "./Stats/Stats.tsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -48,6 +49,7 @@ function App() {
               <Route path="signup" element={<SignUp />}></Route>
               <Route path="history" element={<History />}></Route>
               <Route path="admin" element={<Admin />}></Route>
+              <Route path="stats" element={<Stats />}></Route>
               <Route
                 path="reset-password/send-mail"
                 element={<SendMail />}

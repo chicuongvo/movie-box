@@ -1,0 +1,29 @@
+.stats-header {
+  font-size: 32px;
+}
+
+.top-5-mov {
+  font-size: 22px;
+  line-height: 1.8;
+}
+
+.stats-income {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.income-label {
+  text-align: center;
+}
+
+.top-5-movs {
+  text-align: center;
+}
+
+.stats-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: 32px;
+}

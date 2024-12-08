@@ -15,6 +15,7 @@ function ProtectedRoute() {
     )
       return;
     if (pathname === "/admin" && username !== "admin") navigate("/");
+    if (pathname === "/stats" && username !== "admin") navigate("/");
     if (!username) navigate("/login");
   }, [username, navigate, pathname]);
 

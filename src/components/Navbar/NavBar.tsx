@@ -4,26 +4,6 @@ import { useUser } from "../../contexts/userContext";
 import styles from "./NavBar.module.css";
 import type { NavigateFunction } from "react-router-dom";
 
-const navItems = [
-  {
-    title: `Home`,
-    link: ``,
-  },
-  {
-    title: `Movies`,
-    link: `movies`,
-  },
-  {
-    title: `Cart`,
-    link: `cart`,
-  },
-
-  {
-    title: `History`,
-    link: `history`,
-  },
-];
-
 const getLocalUser = () => {
   return localStorage.getItem("username");
 };
@@ -38,11 +18,41 @@ const handleLogOutClick = (
 };
 
 export default function NavBar() {
+  const navigate = useNavigate();
   const { setUsername } = useUser();
   let { username } = useUser();
   username ||= getLocalUser() || "";
+  let navItems = [
+    {
+      title: `Home`,
+      link: ``,
+    },
+    {
+      title: `Movies`,
+      link: `movies`,
+    },
+    {
+      title: `Cart`,
+      link: `cart`,
+    },
 
-  const navigate = useNavigate();
+    {
+      title: `History`,
+      link: `history`,
+    },
+  ];
+  if (username === "admin")
+    navItems = [
+      ...navItems,
+      {
+        title: `Admin`,
+        link: `admin`,
+      },
+      {
+        title: `Stats`,
+        link: `stats`,
+      },
+    ];
 
   return (
     <div className="nav-wrapper">

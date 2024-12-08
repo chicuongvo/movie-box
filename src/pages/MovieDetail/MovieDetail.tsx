@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useUser } from "../../contexts/userContext";
 import { MovieList } from "../Catalog/Catalog";
 
-interface Movie {
+export interface Movie {
   id: string;
   poster_path: string;
   original_title: string;
