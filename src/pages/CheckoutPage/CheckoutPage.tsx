@@ -164,9 +164,39 @@ const Checkout: React.FC = () => {
 
       const data = await response.json();
       console.log("Order placed successfully:", data);
+
+      await clearCart();
+
       setShowPopup(true);
     } catch (error) {
       console.error("Error placing order:", error);
+    }
+  };
+
+  const clearCart = async () => {
+    try {
+      for (const item of cart) {
+        const res = await fetch(`${API_URL}/movie/cart/${username}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            _id: item._id,
+          }),
+        });
+
+        if (!res.ok) {
+          throw new Error(`Failed to delete item with _id: ${item._id}`);
+        }
+
+        const data = await res.json();
+        console.log(`Item with _id ${item._id} deleted:`, data);
+      }
+
+      setCart([]);
+    } catch (error) {
+      console.error("Error clearing cart:", error);
     }
   };
 

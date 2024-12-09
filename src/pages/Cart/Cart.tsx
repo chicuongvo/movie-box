@@ -52,6 +52,11 @@ const Cart: React.FC = () => {
     fetchCart();
   }, [username]);
 
+  useEffect(() => {
+    setDiscount(0);
+    setAppliedCoupon(null);
+  }, []);
+
   async function removeItem(_id: string) {
     if (!username) return;
 
